@@ -42,8 +42,8 @@ class Word
 	attr_accessor :axiom, :production_set, :word, :n
 	
 	def initialize (w, p, n)
-		@axiom = w
-		@production_set = p
+		@axiom = w.axiom
+		@production_set = p.set
 		@n = n
 	end
 
@@ -62,6 +62,7 @@ class Word
 		end
 			  
 	  return @word
+	  
 	end
 	
 end
