@@ -37,16 +37,16 @@ Generate a bracketed (to be branched) production word from an axiom and a set of
 	REACHED: 18 July 2012 2:28 am (same program, brackets don't make a difference in rewriting yet)
 
 Display a 2D model based on a word.
-	REACHED: 18 July 11:55 am (only rotates in one direction),
-	UPDATE:  18 July 12:18 pm (rotates in multiple directions)
+	REACHED: 18 July 2012 11:55 am (only rotates in one direction),
+	UPDATE:  18 July 2012 12:18 pm (rotates in multiple directions)
 
 Display a 3D model based on a word.
-	REACHED:
+	REACHED: 18 July 13:45 pm (not looking great yet but it does produce 3D)
 
 Generate a stochastic system
 	REACHED: 
 
-Generate a stochastic system that moves back and forth n +/- 1 reliably that allows for changes to the word from one step to the next (probably uses a random seed)
+Generate a stochastic system that produces deterministic results given a seed
 	REACHED:
 
 Build a productions builder, that creates a set of productions from values selected from a web form
