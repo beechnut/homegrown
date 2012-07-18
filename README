@@ -1,0 +1,57 @@
+*
+* L-Ruby
+* 
+*  The Ruby-Processing library for generating plant models
+*  driven by Lindenmayer Systems (L-Systems)
+*
+
+Classes
+
+Things needed:
+
+Superclass of all types of L-Systems
+	Individual types of L-Systems
+
+Species implementing L-Systems
+Species implementing models
+
+
+Productions
+	Signal descriptions
+		Signal description builder
+
+Graphics and UI
+ Plant a seed
+ Advance a step
+ Reverse a step
+ Use a seed so steps back and forward are consistent
+ / Move a branch, bind branches --> these operations would occur on the model word
+ / Then translates the model word to models
+
+
+MILESTONES
+
+Generate a production word from an axiom and a set of productions, n steps.
+	REACHED: 18 July 2012 2:28 am
+
+Generate a production word every class of general l-system from axiom, productions, steps, angle
+	REACHED:
+
+Display a 2D model based on a word.
+	REACHED:
+
+Display a 3D model based on a word.
+	REACHED:
+
+Generate a stochastic system
+	REACHED: 
+
+Generate a stochastic system that moves back and forth n +/- 1 reliably that allows for changes to the word from one step to the next
+	REACHED:
+
+Build a productions builder, that creates a set of productions from values selected from a web form
+	REACHED:
+
+Build a productions database that uses plant data as a basis for the model, and cross-checks generated models against experimental data.
+	REACHED:
+
