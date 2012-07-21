@@ -5,6 +5,33 @@
 *  driven by Lindenmayer Systems (L-Systems)
 *
 
+
+
+To Generate a Basic L-System Model
+
+- Download the repository
+- Navigate into the repository in Terminal using the cd command. For example, if the repository is inside your Documents folder, type "cd ~/Documents/grooby"
+- Start irb, aka Interactive Ruby. Do this by typing "irb" in Terminal
+- Load grooby by typing "load 'grooby.rb'" If you see "true", you know it's loaded.
+- Create a set of rules to be applied to the L-System by typing "p = ProductionRules.new". Now the variable p is the set of all rules used when rewriting the axiom string, the axiom being the origin of the L-System.
+- Generate the data model by typing 
+			make_word("F", p, 4)
+  The make_word command uses the axiom or starting point as the first parameter, here "F". It uses the rules in the set of production rules "p", which, as you see from the output in irb, default to "F"=>"Ff", and "f"=>"f". The last parameter is the number of times the system rewrites itself, or "n".
+  
+- Copy and paste the resulting word, denoted either by "p{n}" or "=>" into the value for "@word" in imager.rb. So, if the resulting word is "Fff", you should see '@word = "FFF"'.
+
+- Go back to Terminal. Exit irb by typing "quit".
+- Make sure you are still inside /grooby by typing "pwd", which means "Path to the Working Directory". This will tell you your current location in the file structure.
+
+- If you are not in grooby, navigate there. Otherwise, type
+			rp5 run imager.rb
+	This runs 'imager.rb' as a Processing sketch using the Ruby-Processing library developed by j-ashkenas.
+
+- Your sketch will load as an image.
+- To re-run the sketch, make sure to quit out of the Ruby-Processing applet that opens using Apple-Q. The Terminal hangs while Ruby-Processing is running, meaning you can't do anything in that Terminal session/window while the sketch is open.
+
+
+
 Classes
 
 Things needed:
@@ -42,6 +69,9 @@ Display a 2D model based on a word.
 
 Display a 3D model based on a word.
 	REACHED: 18 July 13:45 pm (not looking great yet but it does produce 3D)
+
+Make a list of all commands that can be called from one file, grooby.rb.
+	REACHED: 
 
 Generate a stochastic system
 	REACHED: 

@@ -4,6 +4,15 @@
 # 
 
 
+def make_word w, p, n
+	@w = Axiom.new(w)
+	@p = p.rules
+	@n = n
+	
+	word = Word.new @w, @p, @n
+	@word = word.gen
+end
+
 class Axiom
 
 	attr_accessor :axiom
@@ -16,20 +25,20 @@ end
 
 
 
-class ProductionSet
+class ProductionRules
 	
-	attr_accessor :set
+	attr_accessor :rules
 
 	def initialize
-		@set = [{'F'=>'Ff'},{'f'=>'f'}]
+		@rules = [{'F'=>'Ff'},{'f'=>'f'}]
 	end
 
 	def add( hash )
-		@set << hash
+		@rules << hash
 	end
 	
 	def list
-		@set.each_with_index {|hash, index| puts "      p#{index}: #{hash.inspect}"}
+		@rules.each_with_index {|hash, index| puts "      p#{index}: #{hash.inspect}"}
 		return 'Done listing'
 	end
 	
@@ -41,9 +50,9 @@ class Word
 
 	attr_accessor :axiom, :production_set, :word, :n
 	
-	def initialize (w, p, n)
+	def initialize(w, p, n)
 		@axiom = w.axiom
-		@production_set = p.set
+		@production_set = p
 		@n = n
 	end
 
