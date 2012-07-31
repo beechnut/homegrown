@@ -6,10 +6,17 @@
 # 
 # To create the model, need
 # word
-# model alphabet V for DOL systems, which is a hash of models for each of the letters and symbols in the word
+# model alphabet V for DOL systems, which is a hash of models for each of the
+# letters and symbols in the word
 # turtle-style drawing method
 #
 #
+
+# class Something
+#	 puts "Input your axiom:"
+#	 axiom = gets.chomp
+#	 puts "Your axiom: " + axiom
+# end
 
 class Imager < Processing::App
 
@@ -31,14 +38,15 @@ class Imager < Processing::App
 		
 		
 		#  set up words to put into the variable
-		@word = "[&F[RLRLf]RRRRRF[RLRLf]RRRRRF[RLRLf]RRRRRF[RLRLf]]"
-		@word2 = "[&F[RLRLf]RRRRRF[RLRLf]RRRRRF[RLRLf]RRRRRF[RLRLf]]"
-		@word3 = "[&F[RLRLf]RRRRRF[RLRLf]RRRRRF[RLRLf]RRRRRF[RLRLf]]"
+		@word =  "FAAAAAAAAAFAAAAAAAAAAAAAFAAAAAAAAAAA"
+		@word2 = "FffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffAAFffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffAAAAFffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffAAA"
+		@word3 = "FAAAAAAAAAAAFAAAAAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAA"
 		#  set up the array 
 		@word_list = [@word, @word2, @word3]
 
 		@alphabet = {"F" => "stroke 40, 100, 100; line (0,0,0,-1); translate(0,-1)",
-					 "f" => "no_stroke; ellipse(0,0,10,50)",
+					 "f" => "rotateZ(radians(-@angle_deg)); no_stroke; ellipse(0,0,10,50)",
+					 "A" => "rotateY(radians(-@angle_deg)); rotateX(radians(@angle_deg)); no_stroke; ellipse(0,0,10,50)",
 					 "[" => "pushMatrix()",
 					 "]" => "popMatrix()",
 					 	# rotateZ

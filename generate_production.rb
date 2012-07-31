@@ -46,6 +46,30 @@ end
 
 
 
+class StochasticRulesNew
+
+	#google if-else, unless statements the Ruby way
+	
+	# subrules only flagged as false
+	# unless subrules
+		# go with rule
+	# if subrules
+		# rules as rule
+	
+	attr_accessor :rule1, :rule2, :rule2a, :rule2b
+
+	@rule1 = { "pred" => "F", "succ" => "Ff", "subrules" => "false" }
+	@rule2a = { "pred" => "f", "succ" => "A", "prob" => 0.3 }
+	@rule2b = { "pred" => "f", "succ" => "B", "prob" => 0.7 }
+	
+	@rule2 = [@rule2a, @rule2b]
+	
+	@rules = [@rule1, @rule2]
+	
+end
+
+
+
 class Word
 
 	attr_accessor :axiom, :production_set, :word, :n

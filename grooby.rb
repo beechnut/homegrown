@@ -18,3 +18,10 @@
 #
 
 load 'generate_production.rb'
+
+
+# Later
+	# generate_productions or a script which asks for input (axiom, rules, n), or can open stored input
+	# imager
+	
+	# thus typing "rp5 run grooby.rb" gets input for and then runs the image modeling
