@@ -1,5 +1,5 @@
 *
-* L-Ruby
+* Grooby aka L-Ruby
 * 
 *  The Ruby-Processing library for generating plant models
 *  driven by Lindenmayer Systems (L-Systems)
@@ -65,27 +65,30 @@ Generate a bracketed (to be branched) production word from an axiom and a set of
 
 Display a 2D model based on a word.
 	REACHED: 18 July 2012 11:55 am (only rotates in one direction),
-	UPDATE:  18 July 2012 12:18 pm (rotates in multiple directions)
+	UPDATED: 18 July 2012 12:18 pm (rotates in multiple directions)
 
 Display a 3D model based on a word.
 	REACHED: 18 July 13:45 pm (not looking great yet but it does produce 3D)
 
 Make a list of all commands that can be called from one file, grooby.rb.
 	REACHED: 20 July 2012 9:00 pm
-	UPDATE:  XX XXXX XXXXXXX (TODO: Data model and visual model run at once)
+	UPDATED: -- ---- ------- (TODO: Data model and visual model run at once)
 
 Generate a stochastic system
 	REACHED: 31 July 2012 12:35 pm (two rules)
-	UPDATE:  XX XXXX XXXXXXX (TODO: 3 rules)
-	UPDATE:  XX XXXX XXXXXXX (TODO: n rules)
+	UPDATED: -- ---- ------- (TODO: 3 rules)
+	UPDATED: -- ---- ------- (TODO: n rules)
 
 Generate a stochastic system that produces deterministic results given a seed
 	REACHED: 31 July 2012 1:06 pm
 	
 Generate a context-sensitive system that maintains the stochastic determinism described in the last milestone.
-	REACHED: 
+	REACHED: 01 Aug 2012 0:57 am ( Only for 100%-probability rules. May not reach 
+	through brackets, but I haven't seen any examples of or a 
+	rationale for cross-bracket gsubbing. )
+	UPDATED: 01 Aug 2012 1:03 am ( Still may not do cross-bracket aka downbranch gsubbing. Not sure. Haven't tested that. )
 
-Generate a parametric system that maintains the stochastic determinism and context-sensitivity described in the last milestone.
+Generate a parametric system that maintains the deterministic stochastic and context-sensitivity described in the last milestone.
 	REACHED: 
 
 Make a productions builder, that creates a set of productions from values selected from a Shoes app

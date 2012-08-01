@@ -12,11 +12,13 @@
 #
 #
 
+# 
 # class Something
 #	 puts "Input your axiom:"
 #	 axiom = gets.chomp
 #	 puts "Your axiom: " + axiom
 # end
+# 
 
 class Imager < Processing::App
 

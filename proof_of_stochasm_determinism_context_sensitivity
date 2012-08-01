@@ -1,0 +1,324 @@
+>> load 'stochastic.rb'
+./stochastic.rb:89: warning: don't put space before argument parentheses
+./stochastic.rb:178: warning: don't put space before argument parentheses
+=> true
+>> scs
+NoMethodError: undefined method `<' for nil:NilClass
+	from ./stochastic.rb:152:in `stochastic_context_sensitive'
+	from ./stochastic.rb:114:in `each'
+	from ./stochastic.rb:114:in `stochastic_context_sensitive'
+	from ./stochastic.rb:201:in `scs'
+	from (irb):68
+>> load 'stochastic.rb'
+./stochastic.rb:89: warning: don't put space before argument parentheses
+./stochastic.rb:178: warning: don't put space before argument parentheses
+=> true
+>> scs
+NoMethodError: undefined method `<' for nil:NilClass
+	from ./stochastic.rb:152:in `stochastic_context_sensitive'
+	from ./stochastic.rb:114:in `each'
+	from ./stochastic.rb:114:in `stochastic_context_sensitive'
+	from ./stochastic.rb:201:in `scs'
+	from (irb):70
+>> 3 < 1
+=> false
+>> true and 1 > 3
+=> false
+>> true and 1 < 3
+=> true
+>> true && 1 < 3
+=> true
+>> load 'stochastic.rb'
+./stochastic.rb:89: warning: don't put space before argument parentheses
+./stochastic.rb:178: warning: don't put space before argument parentheses
+=> true
+>> scs
+NoMethodError: undefined method `<' for nil:NilClass
+	from ./stochastic.rb:152:in `stochastic_context_sensitive'
+	from ./stochastic.rb:114:in `each'
+	from ./stochastic.rb:114:in `stochastic_context_sensitive'
+	from ./stochastic.rb:201:in `scs'
+	from (irb):76
+>> load 'stochastic.rb'
+./stochastic.rb:89: warning: don't put space before argument parentheses
+./stochastic.rb:178: warning: don't put space before argument parentheses
+=> true
+>> scs
+An error occurred in stochastic_context_sensitive while gsubbing.
+NoMethodError: private method `gsub' called for nil:NilClass
+	from ./stochastic.rb:165:in `stochastic_context_sensitive'
+	from ./stochastic.rb:114:in `each'
+	from ./stochastic.rb:114:in `stochastic_context_sensitive'
+	from ./stochastic.rb:201:in `scs'
+	from (irb):78
+>> @axiom
+=> "FFffFf"
+>> @word
+=> nil
+>> load 'stochastic.rb'
+./stochastic.rb:89: warning: don't put space before argument parentheses
+./stochastic.rb:180: warning: don't put space before argument parentheses
+=> true
+>> scs
+=> nil
+>> load 'stochastic.rb'
+./stochastic.rb:89: warning: don't put space before argument parentheses
+./stochastic.rb:180: warning: don't put space before argument parentheses
+=> true
+>> scs
+=> nil
+>> load 'stochastic.rb'
+./stochastic.rb:89: warning: don't put space before argument parentheses
+./stochastic.rb:180: warning: don't put space before argument parentheses
+=> true
+>> scs
+=> nil
+>> @rules
+=> [[{"succ"=>"Ff", "pred"=>"F"}], [{"succ"=>"ff", "pred"=>"f", "prob"=>"50"}, {"succ"=>"A", "pred"=>"f", "prob"=>"50"}]]
+>> load 'stochastic.rb'
+./stochastic.rb:89: warning: don't put space before argument parentheses
+./stochastic.rb:180: warning: don't put space before argument parentheses
+=> true
+>> @rules
+=> [[{"succ"=>"Ff", "pred"=>"F"}], [{"succ"=>"ff", "pred"=>"f", "prob"=>"50"}, {"succ"=>"A", "pred"=>"f", "prob"=>"50"}]]
+>> @rules
+=> [[{"succ"=>"Ff", "pred"=>"F"}], [{"succ"=>"ff", "pred"=>"f", "prob"=>"50"}, {"succ"=>"A", "pred"=>"f", "prob"=>"50"}]]
+>> @rules
+=> [[{"succ"=>"Ff", "pred"=>"F"}], [{"succ"=>"ff", "pred"=>"f", "prob"=>"50"}, {"succ"=>"A", "pred"=>"f", "prob"=>"50"}]]
+>> scs
+No context demarcators.
+NoMethodError: private method `gsub' called for nil:NilClass
+	from ./stochastic.rb:167:in `stochastic_context_sensitive'
+	from ./stochastic.rb:114:in `each'
+	from ./stochastic.rb:114:in `stochastic_context_sensitive'
+	from ./stochastic.rb:203:in `scs'
+	from (irb):92
+>> @rules
+=> [[{"succ"=>"Ff", "pred"=>"F"}], [{"succ"=>"ff", "pred"=>"f", "prob"=>"50"}, {"succ"=>"A", "pred"=>"f", "prob"=>"50"}]]
+>> load 'stochastic.rb'
+./stochastic.rb:89: warning: don't put space before argument parentheses
+./stochastic.rb:175: warning: don't put space before argument parentheses
+=> true
+>> scs
+NoMethodError: private method `gsub' called for nil:NilClass
+	from ./stochastic.rb:162:in `stochastic_context_sensitive'
+	from ./stochastic.rb:114:in `each'
+	from ./stochastic.rb:114:in `stochastic_context_sensitive'
+	from ./stochastic.rb:198:in `scs'
+	from (irb):95
+>> load 'stochastic.rb'
+./stochastic.rb:89: warning: don't put space before argument parentheses
+./stochastic.rb:175: warning: don't put space before argument parentheses
+=> true
+>> scs
+when get, pred = F and succ = Ff
+NoMethodError: private method `gsub' called for nil:NilClass
+	from ./stochastic.rb:162:in `stochastic_context_sensitive'
+	from ./stochastic.rb:114:in `each'
+	from ./stochastic.rb:114:in `stochastic_context_sensitive'
+	from ./stochastic.rb:198:in `scs'
+	from (irb):97
+>> load 'stochastic.rb'
+./stochastic.rb:89: warning: don't put space before argument parentheses
+./stochastic.rb:176: warning: don't put space before argument parentheses
+=> true
+>> scs
+when get, pred = F and succ = Ff and word = 
+after context, pred = F and succ = Ff and word = 
+NoMethodError: private method `gsub' called for nil:NilClass
+	from ./stochastic.rb:163:in `stochastic_context_sensitive'
+	from ./stochastic.rb:114:in `each'
+	from ./stochastic.rb:114:in `stochastic_context_sensitive'
+	from ./stochastic.rb:199:in `scs'
+	from (irb):99
+>> reset_all
+=> "reset word and seed"
+>> @word
+=> "FFffFf"
+>> scs
+when get, pred = F and succ = Ff and word = FFffFf
+after context, pred = F and succ = Ff and word = FFffFf
+=> "FffFffffffFffff"
+>> load 'stochastic.rb'
+./stochastic.rb:88: warning: don't put space before argument parentheses
+./stochastic.rb:175: warning: don't put space before argument parentheses
+=> true
+>> reset_all
+=> "reset word and seed"
+>> scs
+when get, pred = F and succ = Ff and word = FFffFf
+after context, pred = F and succ = Ff and word = FFffFf
+=> "FfFfffFff"
+>> scs
+when get, pred = F and succ = Ff and word = FfFfffFff
+after context, pred = F and succ = Ff and word = FfFfffFff
+=> "FAAFAAAAFAAA"
+>> load 'stochastic.rb'
+./stochastic.rb:88: warning: don't put space before argument parentheses
+./stochastic.rb:175: warning: don't put space before argument parentheses
+=> true
+>> reset_all
+=> "reset word and seed"
+>> scs
+when get, pred = F<f and succ = Ff and word = FFffFf
+after context, pred = Ff and succ = Ff and word = FFffFf
+=> "FFffffFff"
+>> scs
+when get, pred = F<f and succ = Ff and word = FFffffFff
+after context, pred = Ff and succ = Ff and word = FFffffFff
+=> "FFAAAAFAA"
+>> scs
+when get, pred = F<f and succ = Ff and word = FFAAAAFAA
+after context, pred = Ff and succ = Ff and word = FFAAAAFAA
+=> "FFAAAAFAA"
+>> load 'stochastic.rb'
+./stochastic.rb:88: warning: don't put space before argument parentheses
+./stochastic.rb:175: warning: don't put space before argument parentheses
+=> true
+>> reset_all
+=> "reset word and seed"
+>> scs
+when get, pred = F<f and succ = X and word = Ff
+after context, pred = Ff and succ = X and word = Ff
+=> "X"
+>> load 'stochastic.rb'
+./stochastic.rb:88: warning: don't put space before argument parentheses
+./stochastic.rb:175: warning: don't put space before argument parentheses
+=> true
+>> reset_all
+=> "reset word and seed"
+>> scs
+when get, pred = F<f and succ = X and word = FfF
+after context, pred = Ff and succ = X and word = FfF
+=> "XF"
+>> load 'stochastic.rb'
+./stochastic.rb:88: warning: don't put space before argument parentheses
+./stochastic.rb:175: warning: don't put space before argument parentheses
+=> true
+>> reset_all
+=> "reset word and seed"
+>> scs
+when get, pred = F<f and succ = X and word = fFF
+after context, pred = Ff and succ = X and word = fFF
+=> "ffFF"
+>> scs
+when get, pred = F<f and succ = X and word = ffFF
+after context, pred = Ff and succ = X and word = ffFF
+=> "AAFF"
+>> scs
+when get, pred = F<f and succ = X and word = AAFF
+after context, pred = Ff and succ = X and word = AAFF
+=> "AAFF"
+>> scs
+when get, pred = F<f and succ = X and word = AAFF
+after context, pred = Ff and succ = X and word = AAFF
+=> "AAFF"
+>> scs
+when get, pred = F<f and succ = X and word = AAFF
+after context, pred = Ff and succ = X and word = AAFF
+=> "AAFF"
+>> scs
+when get, pred = F<f and succ = X and word = AAFF
+after context, pred = Ff and succ = X and word = AAFF
+=> "AAFF"
+>> scs
+when get, pred = F<f and succ = X and word = AAFF
+after context, pred = Ff and succ = X and word = AAFF
+=> "AAFF"
+>> load 'stochastic.rb'
+./stochastic.rb:88: warning: don't put space before argument parentheses
+./stochastic.rb:175: warning: don't put space before argument parentheses
+=> true
+>> reset_all
+=> "reset word and seed"
+>> scs
+when get, pred = F>f and succ = X and word = fFF
+after context, pred = fF and succ = X and word = fFF
+=> "XF"
+>> load 'stochastic.rb'
+./stochastic.rb:88: warning: don't put space before argument parentheses
+./stochastic.rb:133: warning: don't put space before argument parentheses
+=> true
+>> reset_all
+=> "reset word and seed"
+>> scs
+when get, pred = F>f and succ = X and word = fFF
+after context, pred = fF and succ = X and word = fFF
+after context, pred = f and succ = ff and word = XF
+=> "XF"
+>> scs
+when get, pred = F>f and succ = X and word = XF
+after context, pred = fF and succ = X and word = XF
+after context, pred = f and succ = A and word = XF
+=> "XF"
+>> scs
+when get, pred = F>f and succ = X and word = XF
+after context, pred = fF and succ = X and word = XF
+after context, pred = f and succ = ff and word = XF
+=> "XF"
+>> scs
+when get, pred = F>f and succ = X and word = XF
+after context, pred = fF and succ = X and word = XF
+after context, pred = f and succ = A and word = XF
+=> "XF"
+>> scs
+when get, pred = F>f and succ = X and word = XF
+after context, pred = fF and succ = X and word = XF
+after context, pred = f and succ = A and word = XF
+=> "XF"
+>> scs
+when get, pred = F>f and succ = X and word = XF
+after context, pred = fF and succ = X and word = XF
+after context, pred = f and succ = ff and word = XF
+=> "XF"
+>> reset_all
+=> "reset word and seed"
+>> load 'stochastic.rb'
+./stochastic.rb:88: warning: don't put space before argument parentheses
+./stochastic.rb:133: warning: don't put space before argument parentheses
+=> true
+>> reset_all
+=> "reset word and seed"
+>> scs
+when get, pred = f>f and succ = X and word = FffF
+after context, pred = ff and succ = X and word = FffF
+after context, pred = f and succ = ff and word = FXF
+=> "FXF"
+>> scs
+when get, pred = f>f and succ = X and word = FXF
+after context, pred = ff and succ = X and word = FXF
+after context, pred = F and succ = A and word = FXF
+=> "AXA"
+>> load 'stochastic.rb'
+./stochastic.rb:88: warning: don't put space before argument parentheses
+./stochastic.rb:133: warning: don't put space before argument parentheses
+=> true
+>> reset_all
+=> "reset word and seed"
+>> scs
+when get, pred = f>f and succ = X and word = FffF
+after context, pred = ff and succ = X and word = FffF
+after context, pred = f and succ = ff and word = FXF
+=> "FXF"
+>> scs
+when get, pred = f>f and succ = X and word = FXF
+after context, pred = ff and succ = X and word = FXF
+after context, pred = FX and succ = A and word = FXF
+=> "AF"
+>> load 'stochastic.rb'
+./stochastic.rb:88: warning: don't put space before argument parentheses
+./stochastic.rb:133: warning: don't put space before argument parentheses
+=> true
+>> reset_all
+=> "reset word and seed"
+>> scs
+when get, pred = f>f and succ = X and word = FffF
+after context, pred = ff and succ = X and word = FffF
+after context, pred = f and succ = ff and word = FXF
+=> "FXF"
+>> scs
+when get, pred = f>f and succ = X and word = FXF
+after context, pred = ff and succ = X and word = FXF
+after context, pred = XF and succ = A and word = FXF
+=> "FA"
+>> 
