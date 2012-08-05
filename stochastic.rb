@@ -62,7 +62,7 @@ end
 #
 
 def stochastic
-	
+
 	# Loop through rules,
 	@rules.each do | rule |
 
@@ -171,12 +171,8 @@ def stochastic_context_sensitive
 			@pred = @pred.gsub( />/, "").reverse #shorthand: remove the >, reverse
 		# Else if pred contains both < and > in that order,
 		elsif @pred.scan( /[<>]/ ).length > 2 and @pred.index("<") < @pred.index(">")
-			# Get the phrase of three letters as the predecessor
-			# Doesn't get the last character yet so the meantime there's a force add
-			# Which only captures one character before and not all
-			# TODO: FIX THIS
-			@pred = @pred.scan( /[A-Za-z](?=[<>])/ ).join("") + @pred[@pred.length-1].chr
-		# Else do nothing
+			# Get the phrase of letters as the predecessor
+			@pred = @pred.gsub( /[^A-Za-z]/ , "") #shorthand: remove the <>
 		end			
 	
 		puts "after context, pred = #{@pred} and succ = #{@succ} and word = #{@word}"

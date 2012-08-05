@@ -69,15 +69,16 @@ Display a 2D model based on a word.
 
 Display a 3D model based on a word.
 	REACHED: 18 July 13:45 pm (not looking great yet but it does produce 3D)
+	UPDATED: -- ---- ------- (TODO: Make it look like the one in the book)
 
 Make a list of all commands that can be called from one file, grooby.rb.
 	REACHED: 20 July 2012 9:00 pm
 	UPDATED: -- ---- ------- (TODO: Data model and visual model run at once)
 
 Generate a stochastic system
-	REACHED: 31 July 2012 12:35 pm (two rules)
-	UPDATED: -- ---- ------- (TODO: 3 rules)
-	UPDATED: -- ---- ------- (TODO: n rules)
+	REACHED: 31 July 2012 12:35 pm (two subrules)
+	UPDATED: -- ---- ------- (TODO: 3 subrules, and 1-subruled rules that can be skipped)
+	UPDATED: -- ---- ------- (TODO: n subrules)
 
 Generate a stochastic system that produces deterministic results given a seed
 	REACHED: 31 July 2012 1:06 pm
@@ -87,15 +88,37 @@ Generate a context-sensitive system that maintains the stochastic determinism de
 	through brackets, but I haven't seen any examples of or a 
 	rationale for cross-bracket gsubbing. )
 	UPDATED: 01 Aug 2012 1:03 am ( Still may not do cross-bracket aka downbranch gsubbing. Not sure. Haven't tested that. )
+	UPDATED: -- ---- --------- (Add an ignore-brackets to regex next to pred in gsub)
 
 Generate a parametric system that maintains the deterministic stochastic and context-sensitivity described in the last milestone.
-	REACHED: 
-
-Make a productions builder, that creates a set of productions from values selected from a Shoes app
-	REACHED:
+	REACHED: -- ---- -------
 
 Generate a production word every class of general l-system from axiom, productions, steps, angle
+DOL-Systems (deterministic and context-free)
+stochastic OL-Systems
+IL-systems / (k,l)-systems
+	OL-systems (no context)
+	1L-systems (one-sided context)
+	2L-systems (two-sided context)
+
+	REACHED: 01 Aug 2012 1:03 am
+	
+
+Include the bezier development of petals and organs.
+	REACHED: 
+
+Allow leaves and other components to drop off at a certain point. Using the cut symbol "%"
+	REACHED: 
+	
+Allow specification of contraction ratios and branching angles.
 	REACHED:
+	
+Include phototropism, gravity, elasticity vectors.
+	REACHED:
+
+Make a GUI'd L-system builder
+	REACHED:
+
 
 Build a productions database that uses plant data as a basis for the model, and cross-checks generated models against experimental data.
 	REACHED:
