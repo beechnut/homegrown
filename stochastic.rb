@@ -18,8 +18,8 @@
 
 
 
-def probable ( random_number, first_prob, second_prob, first_result, second_result )
-	case random_number
+def probable ( first_prob, second_prob, first_result, second_result )
+	case rand
 	when 0..first_prob
 		# puts random_number.to_s + " is between 0..0.5, result: " + first_result
 		return 0

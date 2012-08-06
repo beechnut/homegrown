@@ -9,7 +9,7 @@ def generate(axiom, rule_list, number_of_times)
 		# Go through every rule and
 		@rules.each do | rule |
 			# Determine the predecessor regex and successor to use
-			@word.gsub!( rule.predecessor, rule.successor )	# Be destructive. Go ahead.
+			@word.gsub!( rule.run[0], rule.run[1] )	# Be destructive. Go ahead. Maybe dup?
 			#But add it to the array of steps for safekeeping.
 			@words << @word
 		end # loop
