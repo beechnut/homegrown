@@ -17,10 +17,9 @@ module Probable
 
 end # Probable module
 
-# ProbabilitySubrules module
+# SubruleChooser module
 # chooses which of many subrules to run
 
-# REALLY HASH IT OUT, YOU'RE CLOSE
 module SubruleChooser
 
 	def choose  #called on a rule
@@ -30,7 +29,6 @@ module SubruleChooser
 		@last = @subrules.length-1
 		
 		@subrules.each_with_index do |rule, index|
-			puts rule
 			if index == @first
 				@statement << "when 0..#{rule.prob} : return @subrules[#{index}]; "
 				@lastprob = rule.prob
@@ -43,7 +41,6 @@ module SubruleChooser
 		end
 		
 		@statement += "else return nil; end;"
-		puts @statement
 		
 		# run it
 		eval(@statement)
@@ -82,7 +79,6 @@ module ZeroLSystemRule
 	include Probable
 	include SubruleChooser
 
-	
 	# how to produce the predecessor regex for an 0LSystemRule	
 	def active_predecessor
 		#if there are no subrules
@@ -164,7 +160,7 @@ end
 
 class Rule
 
-	attr_accessor :index, :subindex, :lcon, :pred, :rcon, :prob, :succ
+	attr_accessor :subrules, :lcon, :pred, :rcon, :prob, :succ
 	
 	# rule and ILSystemRule will do the same thing until I figure out the difference
 	#  between an ILSystemRule and Parametric PLSystemRule
@@ -194,12 +190,10 @@ class Rule
 		end # conditional about context_count
 
 		# eventually make recursive with a base case of subrules=0, other cases
+		# necessary? will every one implement SubruleChooser::choose and it'll go here?
 		def chosen_rule
 			unless self.subrules.nil?
-				###########################
-				# 
-				# TODO build case/switch to return one subrule( Rule object )
-				#  aka multiprob module
+				# SubruleChooser::choose
 				return chosen
 			else
 				return self

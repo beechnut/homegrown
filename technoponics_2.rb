@@ -124,7 +124,7 @@ Shoes.app :width => 500, :height => 750 do
 	#TODO : RUN BUTTON
 	stack :width => 450, :margin => 10 do
 		background "#FFF"
-		button("Run Model") { alert("This will be the run function, someday.") }
+		button("Run Model") { system 'rp5 run ColorCube.rb' }
 	end
 	
 	#TODO : TABS

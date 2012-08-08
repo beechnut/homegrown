@@ -111,14 +111,16 @@ Allow leaves and other components to drop off at a certain point. Using the cut 
 	REACHED: 
 	
 Allow specification of contraction ratios and branching angles.
-	REACHED:
+	REACHED: 
 	
-Include phototropism, gravity, elasticity vectors.
-	REACHED:
+Include phototropism, gravity, elasticity vector influence.
+	REACHED: 
+
+Include self-shading.
+	REACHED: 
 
 Make a GUI'd L-system builder
-	REACHED:
-
+	REACHED: 
 
 Build a productions database that uses plant data as a basis for the model, and cross-checks generated models against experimental data.
 	REACHED:
