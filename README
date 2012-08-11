@@ -108,6 +108,7 @@ Include the bezier development of petals and organs.
 	REACHED: 
 
 Allow leaves and other components to drop off at a certain point. Using the cut symbol "%"
+# based on PhD dissert
 	REACHED: 
 	
 Allow specification of contraction ratios and branching angles.
