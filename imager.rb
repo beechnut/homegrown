@@ -1,4 +1,4 @@
-
+#!/usr/bin/env ruby
 
 # 
 # GOAL: Translate model word to image
@@ -20,14 +20,15 @@
 # end
 # 
 
+
 class Imager < Processing::App
 
 
 	def setup
 		
-		size 1200, 700, P3D
+		size 700, 700, P3D
 		color_mode HSB, 360
-		background 180, 360, 100, 360
+		background 360, 0, 360, 360
 		smooth
 		ellipse_mode(CENTER)
 		lights
@@ -40,11 +41,11 @@ class Imager < Processing::App
 		
 		
 		#  set up words to put into the variable
-		@word =  "FAAAAAAAAAFAAAAAAAAAAAAAFAAAAAAAAAAA"
-		@word2 = "FffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffAAFffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffAAAAFffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffAAA"
-		@word3 = "FAAAAAAAAAAAFAAAAAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAA"
+		@word =  ARGV[0]
+		#@word2 = "FffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffAAFffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffAAAAFffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffAAA"
+		#word3 = "FAAAAAAAAAAAFAAAAAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAA"
 		#  set up the array 
-		@word_list = [@word, @word2, @word3]
+		@word_list = [@word]
 
 		@alphabet = {"F" => "stroke 40, 100, 100; line (0,0,0,-1); translate(0,-1)",
 					 "f" => "rotateZ(radians(-@angle_deg)); no_stroke; ellipse(0,0,10,50)",
@@ -71,7 +72,9 @@ class Imager < Processing::App
 		translate 200, 660 
 
 		
+		# for each production word
 		@word_list.each do | @word |
+			# s
 			@letters = @word.split(//)
 			puts 'making model'
 			@letters.each do |letter|

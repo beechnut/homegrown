@@ -90,7 +90,7 @@ Generate a context-sensitive system that maintains the stochastic determinism de
 	UPDATED: 01 Aug 2012 1:03 am ( Still may not do cross-bracket aka downbranch gsubbing. Not sure. Haven't tested that. )
 	UPDATED: -- ---- --------- (Add an ignore-brackets to regex next to pred in gsub)
 
-Generate a parametric system that maintains the deterministic stochastic and context-sensitivity described in the last milestone.
+Generate a parametric system that maintains the deterministic stochastic context-sensitivity described in the last milestone.
 	REACHED: -- ---- -------
 
 Generate a production word every class of general l-system from axiom, productions, steps, angle
@@ -103,6 +103,9 @@ IL-systems / (k,l)-systems
 
 	REACHED: 01 Aug 2012 1:03 am
 	
+
+Make a GUI'd L-system builder
+	REACHED:
 
 Include the bezier development of petals and organs.
 	REACHED: 
@@ -119,9 +122,7 @@ Include phototropism, gravity, elasticity vector influence.
 
 Include self-shading.
 	REACHED: 
-
-Make a GUI'd L-system builder
-	REACHED: 
+ 
 
 Build a productions database that uses plant data as a basis for the model, and cross-checks generated models against experimental data.
 	REACHED:

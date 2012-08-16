@@ -129,7 +129,7 @@ module OneLSystemRule
 	def active_successor
 		return lcon.nil? ? rcon + succ : lcon + succ
 	end
-end
+end #OneLSystemRule
 
 module TwoLSystemRule
 	def active_predecessor
@@ -139,11 +139,11 @@ module TwoLSystemRule
 	def active_successor
 		return lcon + succ + rcon
 	end
-end
+end #TwoLSystemRule
 
 
 
-# Both ILSystemRule and PLSystemRule are based off of OLSystemRule, 1LSystemRule, 2LSystemRule
+# Both ILSystemRule and PLSystemRule are based off of ZeroLSystemRule, OneLSystemRule, TwoLSystemRule
 
 class ILSystemRule
 	def initialize
