@@ -13,7 +13,7 @@
 # End app loop
 
 # Set up app loop
-Shoes.app :width => 450 do
+Shoes.app :width => 450, :height => 700 do
 
 	background "#73461F"
 
@@ -25,11 +25,18 @@ Shoes.app :width => 450 do
 		title "L-System Builder", :font => 'Georgia', :stroke => "#FFF", :align => 'center'
 		
 		flow :margin => ['20%', '0px', '20%', '5px'] do
-			@axiom_line = edit_line :text => 'axiom', :width => 200, :align =>'center'
-			@times = edit_line :text => 'n', :width => 30
-			button "Run Model" do
-				system "rp5 run imager.rb #{ @word }"
-			end
+			para "Axiom:", :font => 'Georgia', :stroke => "#FFF"
+			@axiom_line = edit_line :text => 'X', :width => 150
+			para "\n"
+			para "Number of times to rewrite the string with the rules:", :font => 'Georgia', :stroke => "#FFF"
+			@times = edit_line :text => '7', :width => 30
+			para "\n"
+			para "Line (F) length:", :font => 'Georgia', :stroke => "#FFF"
+			@line_length = edit_line :text => '1', :width => 40
+			para "\n"
+			para "Branching angle - [ ]:", :font => 'Georgia', :stroke => "#FFF"
+			@angle_deg = edit_line :text => '20', :width => 40
+
 			button "Generate Word" do
 				load 'generate.rb'
 				@axiom = @axiom_line.text
@@ -38,9 +45,15 @@ Shoes.app :width => 450 do
 					#@arr.each do | val |
 					#	para val.pred.to_s + " " + val.prob.to_s + " " + val.succ.to_s
 					#end
-					para @word = generate(@axiom.to_s, @arr, @times.text.to_i)
+					@word = generate(@axiom.to_s, @arr, @times.text.to_i)
+					@word_line = edit_box "#{@word}", :width => 400, :height => 100, :margin => ['5%', '5%', '0px', '0px']
 				end
 			end
+			
+			button "Run Model" do
+				system "rp5 run imager.rb #{ @word } #{ @line_length.text } #{ @angle_deg.text }"
+			end
+			
 		end
 		
 	end # header flow
@@ -53,11 +66,10 @@ Shoes.app :width => 450 do
 	#Default rules
 	load 'rule_classes.rb'
 	#def initialize( subrules, lcon, pred, rcon, prob, succ )
-	@a = Rule.new( nil, nil, "F", nil, 1, "f" )
-	@b = Rule.new( nil, nil, "X", nil, 1, "A" )
-	@c = Rule.new( nil, nil, "Y", nil, 1, "F" )
+	@a = Rule.new( nil, nil, "X", nil, 1, "F[+X]F[-X]+X" )
+	@b = Rule.new( nil, nil, "F", nil, 1, "FF" )
 	#@arr = ["a","b","c"]
-	@arr = [ @a, @b, @c ]
+	@arr = [ @a, @b ]
 	# Define a draw function that loops through the array,
 	def display_array
 	
@@ -67,7 +79,7 @@ Shoes.app :width => 450 do
 			if @editing == ind
 				@i = edit_line :text => "#{val.pred}", :width => 40
 				@j = edit_line :text => "#{val.prob}", :width => 40
-				@k = edit_line :text => "#{val.succ}", :width => 40
+				@k = edit_line :text => "#{val.succ}", :width => 100
 				button "Save" do
 					@edited_element = Rule.new(nil, nil, @i.text.to_s, nil, @j.text.to_f, @k.text.to_s)
 					@arr[ind] = @edited_element
@@ -104,7 +116,7 @@ Shoes.app :width => 450 do
 		@f = edit_line :width => 40
 		para "\n"
 		para "Successor:   "
-		@g = edit_line :width => 40
+		@g = edit_line :width => 100
 		para "\n"
 		button "Add Rule" do
 			@new = Rule.new(nil, nil, @e.text.to_s, nil, @f.text.to_f, @g.text.to_s)
@@ -129,7 +141,7 @@ end # display_array
 	
 	@footer = stack :width => 450, :margin => ['20px', '5px', '20px', '0px'] do
 		background "#FFF", :curve => 10
-		para " "
+		@word_line = edit_box "#{@word}", :width => 400, :height => 100,  :margin => ['5%', '5%', '0px', '0px']
 	end
 
 # End app loop

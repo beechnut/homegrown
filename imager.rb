@@ -36,7 +36,7 @@ class Imager < Processing::App
 		stroke_weight 2
 		
 		#parameters
-		@angle_deg = 22.5
+		@angle_deg = ARGV[2].to_f
 		#n specified in word
 		
 		
@@ -46,8 +46,9 @@ class Imager < Processing::App
 		#word3 = "FAAAAAAAAAAAFAAAAAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAA"
 		#  set up the array 
 		@word_list = [@word]
+		@line_length = ARGV[1]
 
-		@alphabet = {"F" => "stroke 40, 100, 100; line (0,0,0,-1); translate(0,-1)",
+		@alphabet = {"F" => "stroke 40, 100, 100; line (0,0,0,-#{@line_length.to_i}); translate(0,-#{@line_length.to_i})",
 					 "f" => "rotateZ(radians(-@angle_deg)); no_stroke; ellipse(0,0,10,50)",
 					 "A" => "rotateY(radians(-@angle_deg)); rotateX(radians(@angle_deg)); no_stroke; ellipse(0,0,10,50)",
 					 "[" => "pushMatrix()",

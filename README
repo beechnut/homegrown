@@ -9,27 +9,36 @@
 
 To Generate a Basic L-System Model
 
-- Download the repository
-- Navigate into the repository in Terminal using the cd command. For example, if the repository is inside your Documents folder, type "cd ~/Documents/grooby"
-- Start irb, aka Interactive Ruby. Do this by typing "irb" in Terminal
-- Load grooby by typing "load 'grooby.rb'" If you see "true", you know it's loaded.
-- Create a set of rules to be applied to the L-System by typing "p = ProductionRules.new". Now the variable p is the set of all rules used when rewriting the axiom string, the axiom being the origin of the L-System.
-- Generate the data model by typing 
-			make_word("F", p, 4)
-  The make_word command uses the axiom or starting point as the first parameter, here "F". It uses the rules in the set of production rules "p", which, as you see from the output in irb, default to "F"=>"Ff", and "f"=>"f". The last parameter is the number of times the system rewrites itself, or "n".
+- Download the repository.
+- Download Shoes if you don't have it. Download the right version for your operating
+  system from shoesrb.com/downloads.
+- Install Shoes and open it. Click "Open an App".
+- Navigate to and open "editor-crisp.rb".
+
+- Input the axiom, number of times to rewrite the string using the rules, line length
+  where line is the line drawn by the letter F, branching angle
+- TIPS:
+	-- To start a branch, use [. To end the branch and go back to drawing from the
+	   stem/trunk, use ].
+	-- To create a straight line anywhere, use F. X makes a smaller straight line of
+	   fixed size.
+	   
+	   
+  The default options draw a nice tree. Use that as jumping-off point for exploration.
+
+- Click 'Generate Word'. This produces the string of characters to be used in
+  visualization. The footer is useful for inspecting the word. Once you have
+  generated the word...
   
-- Copy and paste the resulting word, denoted either by "p{n}" or "=>" into the value for "@word" in imager.rb. So, if the resulting word is "Fff", you should see '@word = "FFF"'.
-
-- Go back to Terminal. Exit irb by typing "quit".
-- Make sure you are still inside /grooby by typing "pwd", which means "Path to the Working Directory". This will tell you your current location in the file structure.
-
-- If you are not in grooby, navigate there. Otherwise, type
-			rp5 run imager.rb
+- Click 'Run Model'
+    This visualizes the word you just generated.
 	This runs 'imager.rb' as a Processing sketch using the Ruby-Processing library developed by j-ashkenas.
 
 - Your sketch will load as an image.
 - To re-run the sketch, make sure to quit out of the Ruby-Processing applet that opens using Apple-Q. The Terminal hangs while Ruby-Processing is running, meaning you can't do anything in that Terminal session/window while the sketch is open.
 
+
+##### TECHNICAL DETAILS #####
 
 
 Classes
@@ -55,7 +64,7 @@ Graphics and UI
  / Then translates the model word to models
 
 
-MILESTONES in 2012
+##### MILESTONES in 2012 #####
 
 Generate a production word from an axiom and a set of productions, n steps.
 	REACHED: 18 July 2012 2:28 am
@@ -105,7 +114,8 @@ IL-systems / (k,l)-systems
 	
 
 Make a GUI'd L-system builder
-	REACHED:
+	REACHED: 16 Aug 2012 10:25 am (not context-sensitive, alphabet not built here mostly)
+	UPDATED:  ( context-sensitive, build alphabet here, presets )
 
 Include the bezier development of petals and organs.
 	REACHED: 
@@ -127,3 +137,4 @@ Include self-shading.
 Build a productions database that uses plant data as a basis for the model, and cross-checks generated models against experimental data.
 	REACHED:
 
+Make the plant manipulable.
