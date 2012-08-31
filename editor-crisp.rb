@@ -36,6 +36,7 @@ Shoes.app :width => 450, :height => 700 do
 			para "\n"
 			para "Branching angle - [ ]:", :font => 'Georgia', :stroke => "#FFF"
 			@angle_deg = edit_line :text => '20', :width => 40
+			para " deg", :font => 'Georgia', :stroke => "#FFF"
 
 			button "Generate Word" do
 				load 'generate.rb'
@@ -50,7 +51,7 @@ Shoes.app :width => 450, :height => 700 do
 				end
 			end
 			
-			button "Run Model" do
+			button "Grow Plant!" do
 				system "rp5 run imager.rb #{ @word } #{ @line_length.text } #{ @angle_deg.text }"
 			end
 			

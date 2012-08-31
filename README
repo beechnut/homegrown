@@ -130,7 +130,7 @@ Allow specification of contraction ratios and branching angles.
 Include phototropism, gravity, elasticity vector influence.
 	REACHED: 
 
-Include self-shading.
+Include self-shading avoidance, which might be phototropism, or it might not.
 	REACHED: 
  
 
@@ -138,3 +138,7 @@ Build a productions database that uses plant data as a basis for the model, and 
 	REACHED:
 
 Make the plant manipulable.
+	REACHED: 
+
+Make the plant manipulable through time.
+	REACHED: 
