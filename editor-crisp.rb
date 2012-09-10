@@ -52,7 +52,7 @@ Shoes.app :width => 450, :height => 700 do
 			end
 			
 			button "Grow Plant!" do
-				system "rp5 run imager.rb #{ @word } #{ @line_length.text } #{ @angle_deg.text }"
+				system "rp5 run imager.rb #{ @word_line.text } #{ @line_length.text } #{ @angle_deg.text }"
 			end
 			
 		end
