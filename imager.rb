@@ -12,13 +12,6 @@
 #
 #
 
-# 
-# class Something
-#	 puts "Input your axiom:"
-#	 axiom = gets.chomp!
-#	 puts "Your axiom: " + axiom
-# end
-# 
 
 
 class Imager < Processing::App
@@ -36,26 +29,64 @@ class Imager < Processing::App
 		stroke_weight 2
 		# frame_rate 18
 		
-		
-		
 		# rotatering
 		@x_rotation_angle = 0
 		@y_rotation_angle = 0
 		@xdrag = 0
 		@ydrag = 0
 		
-		
 		#parameters
-		@word =  ARGV[0].to_s
-		@unit_len = ARGV[1].to_i # unit length
-		@angle_deg = ARGV[2].to_f
+		@word = "FFFFFFFF[+FFFF[+FF[+X]FF[-X]+X]FFFF[-FF[+X]FF[-X]+X]+FF[+X]FF[-X]+X]FFFFFFFF[-FFFF[+FF[+X]FF[-X]+X]FFFF[-FF[+X]FF[-X]+X]+FF[+X]FF[-X]+X]+FFFF[+FF[+X]FF[-X]+X]FFFF[-FF[+X]FF[-X]+X]+FF[+X]FF[-X]+X" #ARGV[0].to_s
+		@unit_len = 20 #ARGV[1].to_f # unit length
+		@angle_deg = 20 #ARGV[2].to_f
 		@sublength = 1
-		
-		#  set up the array of words for multiple drawings
+				
+		#set up the array of words for multiple drawings
 		#@word_list = [@word]
 		
+		load 'models/node.rb'
+		load 'controllers/node_controller.rb'
+		load 'views/_timeline.rb'
+		
+		@timeline = Timeline.new
+		
+		
 		# formerly in F:
-		$alphabet = {"F" => "stroke 40, 100, 100, 60; line(0,0,0,-#{@unit_len * @sublength}); translate(0,-#{@unit_len * @sublength})", # Nodes
+		def runly(letter)
+				case letter
+				when "F"
+					stroke 40, 100, 100, 60
+					line 0, 0, 0, -(@unit_len * @sublength)
+					translate 0,-(@unit_len * @sublength)
+				when "X"
+					stroke 40, 100, 100, 60
+					line 0, 0, 0, -(@unit_len * (@sublength/20))
+					translate 0, -(@unit_len * (@sublength/20))
+				when "+"
+					rotateZ(radians(-@angle_deg * @sublength))
+				when "-"
+					rotateZ(radians(@angle_deg * @sublength))
+				when "["
+					pushMatrix
+					fill 100, 250, 360, 100
+					stroke 40, 100, 100, 80
+					ellipse 0, 0, 5, 5
+					@node_controller.add_node(model_x(0, 0, 0), model_y(0, 0, 0), model_z(0, 0, 0))
+					puts "Imager#runly: (push) length: " + @node_controller.nodes.length.to_s
+					fill 100, 250, 360
+				when "]"
+					@node_controller.add_node(model_x(0, 0, 0), model_y(0, 0, 0), model_z(0, 0, 0))
+					puts "Imager#runly: (pop) length: " + @node_controller.nodes.length.to_s
+					fill 100, 250, 360, 200
+					ellipse 0, 0, 10, 10
+					popMatrix
+				else
+					puts "no entry in library"
+				end
+		end		
+		
+		
+		@alphabet = {"F" => "stroke 40, 100, 100, 60; line(0,0,0,-#{@unit_len * @sublength}); translate(0,-#{@unit_len * @sublength})", # Nodes
 					 "f" => "rotateZ(radians(-@angle_deg * @sublength)); no_stroke; ellipse(0,0,10,50)",
 					 "A" => "rotateY(radians(-@angle_deg * @sublength)); rotateX(radians(@angle_deg)); no_stroke; ellipse(0,0,10,50)",
 					 "[" => "pushMatrix(); fill 100, 250, 360, 100; stroke 40, 100, 100, 80; ellipse(0,0,5,5); fill 100, 250, 360",
@@ -75,7 +106,7 @@ class Imager < Processing::App
 					 
 					 "a" => "line(0,0,0,-30 * @sublength); translate(0,-30 * @sublength)",
 					 "b" => "rotateZ(radians(90 * @sublength))"
-					}
+			}
 
 		# make a model out of the letters in setup, then draw that. you can output back to letters later!
 		# WORKFLOW: generate plant, modify model, translate back to letters for next iteration!!!!!!!!!!!
@@ -111,10 +142,10 @@ class Imager < Processing::App
 		# this will mean thousands of fewer eval()s called every draw, probably meaning a significantly increased framerate
 		# and a base on which to add more functionality like rotations and time
 	
-		load 'recur.rb' #get the function letter_array		
+		#get the function letter_array
+		load 'recur.rb'
 
-		@letters = @word.split(//)
-		@letter_array = letter_array
+		@letter_array = letter_array(@word)
 			
 		def run
 			### Run the model
@@ -122,15 +153,13 @@ class Imager < Processing::App
 			@letter_array.each do |letterset|
 				@sublength = letterset.length
 				letter = letterset[0..0]
-				puts letterset.to_s + " <word subl> " + @sublength.to_s
-				unless $alphabet[letter].nil?
-					eval($alphabet[letter])
-				end
+				#puts letterset.to_s + " <word subl> " + @sublength.to_s
+				#unless @alphabet[letter].nil?
+				#	eval(@alphabet[letter])
+				#end
+				runly(letter)
 			end
 		end #run
-		
-		# ACTUALLY RUN
-		run
 		
 		# CONTINUOUS ROTATION
 		@az = 0
@@ -143,8 +172,6 @@ class Imager < Processing::App
 				rotateY radians(@az)
 			end
 		end
-		
-
 		
 		# SET A VIEW
 		def camera(position)
@@ -163,25 +190,23 @@ class Imager < Processing::App
 				else
 				end
 		end
+		
+		
+		# RUN
+		
+		
 	end #end setup
 	
-	##############	
+	###################
+
 	# MAJOR TODO #
-	##############
+
 	# UI - CONTROLP5 http://www.sojamo.de/libraries/controlP5/#resources
 	# TOOLBAR FOR
-		# list - choose a view
-		# continuous rotation - checkbox
-		# later: mouse scroll zoom: http://wiki.processing.org/w/Wheel_mouse
-		# vertical slider - line length unit
-		# knob - branch angle
-		# much later: build in proscene
-
-
-
-	###################
-	###################
-	###################
+		# button :front, :left, :top
+		# toggle :rotation
+		# slider: line length
+		# knob: branch angle
 
 	# MOUSE CONTROL
 		# gets the motion to apply to rotations
@@ -197,35 +222,40 @@ class Imager < Processing::App
 		@xdrag = 0
 		@ydrag = 0
 	end
-	
-	###################
-	###################
-	###################
 
 	def mouse_rotate
 		rotateY radians(@x_rotation_angle)
 		rotateX radians(-@y_rotation_angle)
 	end
-
-
-	def build_gui
-		fill 0
-		text("gui", 30, 30)
+	
+	def mouse_clicked
+		@node_controller.mouse_clicked
 	end
+	
+	def mouse_moved
+		@node_controller.mouse_moved
+	end
+
+	###################
 	
 	# Create node class, object
 	#   when it's manipulated, only rotate in increments of angle_unit (1 deg)
 	#   find the most recent previous [, append +s or -s depending on direction/quadrant of mouse movement
 	#   redraw model ( happens automatically with draw() )
-
+	
 	def draw
-		background 360,0,360,360
-		build_gui
-		translate 300,600
+		@timeline.draw
+		@node_controller = NodeController.new
+		background 360, 0, 360, 360
+		translate 300, 600
 		camera(:front)
 		rotate("false")
 		mouse_rotate
 		run
+		@node_controller.draw_nodes
+	end
+	
+	def update
 	end
 	
 end

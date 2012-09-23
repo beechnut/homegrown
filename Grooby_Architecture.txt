@@ -1,0 +1,126 @@
+Description of a "finished" state:
+	Takes in rules to make a plant-like word.
+	Displays the plant, with the trunk getting larger.
+	Plant can be rotated, have branches manipulated, and grown another generation.
+
+
+LIST OF MVC
+
+MODEL		CONTROLLER				VIEW									STATUS
+Node		NodeController			Imager									| NOM
+History		HistoryController		Timeline								| NOM
+Word		WordController			(represented as Node)					| NOM
+Alphabet	AlphabetController		(AlphaBuilder, eventually)				| ---
+Rule		RuleController			(RuleBuilder, eventually)				| ---
+GUI			EventHandler			GUI										| ---
+ViewOptions	ViewOptionsController	GUI										| ---
+Tree		TreeController			ungghh?									| ---
+Grove		GroveController			bluggh??								| ---
+
+
+NOM = Nominal, model and controller fine
+N|- = Nominal model, Untested controller
+-|N = Untested model, Nominal controller
+--- = Untested / not ready
+FLD = Failed / not ready
+RTH = Failed, Rethink / not ready
+FIN = Finished Model, Controller, and View
+
+
+
+Classes and Modules
+
+
+class Node
+	# Represents a branchpoint, either initial or terminal.
+	# Displays differently pop vs push.
+	# Highlights when mouse is moved near.
+	# Is draggable, and informs the WordController's insert of rotational characters.
+end
+
+
+class NodeController < Processing::Proxy
+	# checks the nodes for interactions, like clicks
+end
+
+History
+	arrays that hold history information:
+		generations
+		modifications
+	brings along a HistoryController - you can't do ish without it
+end
+
+HistoryController
+	adding and removing and changing History arrays
+	functions like add_word(word)
+end
+
+Word
+	PRIME DIRECTIVE: stores the generated word
+end
+
+WordController
+	PRIME DIRECTIVE: manipulates the word
+	can rewrite words based on rules, make changes, store in history
+	uses generate.rb
+	functions like add_after(letters, substring position in front of which to insert)
+	functions like replace_multiples_at( char to replace, position of a char in the group, number to replace with ) 
+	get_branch_at( string_position_or_array_position_attached_to_node )-=
+end
+
+Alphabet
+	stores letters and how they are translated into graphics
+end
+
+AlphabetController
+	modifies Alphabet by adding and removing rules
+end
+
+Rule
+	stores information to be used by WordController in generating a word
+	mostly 
+end
+
+RuleController
+	helps with building rules
+end
+
+InteractionController
+	manages any time a mouse interacts with the screen
+		should be inherited by tools: Pan, Rotate, Grab, Graft
+	how did the Drawing Editor in Java do it? Look at old mac.
+end
+
+Tree
+	has a word with a history, nodes, drawing options
+end
+
+TreeController
+	draws the trees, next_generation { next_gen_word, update_app_view }
+end
+
+Editor
+	contains all of it
+end
+
+
+### ANOTHER UPGRADE
+
+PlantMatter
+	Branch < PlantMatter
+	Petal < PlantMatter
+	Leaf < PlantMatter
+
+Graftable -- add branch
+Graftable -- 2 nodes can be secured together
+Multiple Plants
+Walkthrough Path = let camera move along a path
+coordinate system & planes listed in 3d modeling abbrevs in wikipedia
+
+Grove
+	for multiple trees. this will not be for the Oct thing
+end
+
+GroveController
+	for multiple trees. this will not be for the Oct thing
+end

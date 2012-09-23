@@ -111,7 +111,13 @@ IL-systems / (k,l)-systems
 	2L-systems (two-sided context)
 
 	REACHED: 01 Aug 2012 1:03 am
-	
+
+
+Make the plant manipulable.*
+	REACHED: 
+
+Make the plant manipulable through time.*
+	REACHED: 	
 
 Make a GUI'd L-system builder
 	REACHED: 16 Aug 2012 10:25 am (not context-sensitive, alphabet not built here mostly)
@@ -133,12 +139,5 @@ Include phototropism, gravity, elasticity vector influence.
 Include self-shading avoidance, which might be phototropism, or it might not.
 	REACHED: 
  
-
 Build a productions database that uses plant data as a basis for the model, and cross-checks generated models against experimental data.
 	REACHED:
-
-Make the plant manipulable.
-	REACHED: 
-
-Make the plant manipulable through time.
-	REACHED: 
