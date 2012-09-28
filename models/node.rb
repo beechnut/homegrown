@@ -1,8 +1,6 @@
 # 
-# Node and NodeController
+# Node (model)
 # written by Matt Cloyd
-#
-# started September 2012, alpha finished ...
 #
 
 # 
@@ -10,7 +8,6 @@
 # for L-Systems in Grooby.
 #
 # Nodes draw themselves as ovals, are different in appearance 
-# 
 #
 
 # I don't know how "setup" and "draw" will work when called inside each other. I don't
@@ -19,7 +16,7 @@
 class Node
 	
 	include Processing::Proxy  # A proxy mixin lets you use Processing methods
-	attr_reader :node_x, :node_y, :node_z
+	attr_accessor :node_x, :node_y, :node_z, :position
 	
 	# Represents a branchpoint, either initial or terminal.
 	# Displays differently pop vs push.
@@ -48,14 +45,14 @@ class Node
 	# Draws itself as an ellipse
 	def draw		
 		no_stroke
-		fill 10, 70, 70
+		fill 40, 50, 70
 		ellipse(@node_x, @node_y, @@node_size, @@node_size)
 	end
 	
 	# Draws itself as a yellow ellipse
 	def highlight
 		no_stroke
-		fill 40, 70, 70
+		fill 14, 70, 70
 		ellipse(@node_x, @node_y, @@node_size + @@expand, @@node_size + @@expand)
 	end
 

@@ -55,9 +55,17 @@ class Imager < Processing::App
 		def runly(letter)
 				case letter
 				when "F"
+					@mx = model_x(0,0,0)
+					@my = model_y(0,0,0)
+					@mz = model_z(0,0,0)
+					puts "Imager#runly: before translate #{@mx}, #{@my}, #{@mz}"
 					stroke 40, 100, 100, 60
 					line 0, 0, 0, -(@unit_len * @sublength)
 					translate 0,-(@unit_len * @sublength)
+					@nx = model_x(0,0,0)
+					@ny = model_y(0,0,0)
+					@nz = model_z(0,0,0)
+					puts "Imager#runly: after translate #{@nx}, #{@ny}, #{@nz}"
 				when "X"
 					stroke 40, 100, 100, 60
 					line 0, 0, 0, -(@unit_len * (@sublength/20))
@@ -67,6 +75,7 @@ class Imager < Processing::App
 				when "-"
 					rotateZ(radians(@angle_deg * @sublength))
 				when "["
+					# sublength times do
 					pushMatrix
 					fill 100, 250, 360, 100
 					stroke 40, 100, 100, 80
@@ -74,16 +83,22 @@ class Imager < Processing::App
 					@node_controller.add_node(model_x(0, 0, 0), model_y(0, 0, 0), model_z(0, 0, 0))
 					puts "Imager#runly: (push) length: " + @node_controller.nodes.length.to_s
 					fill 100, 250, 360
+					# end
 				when "]"
+					# sublength times do
 					@node_controller.add_node(model_x(0, 0, 0), model_y(0, 0, 0), model_z(0, 0, 0))
 					puts "Imager#runly: (pop) length: " + @node_controller.nodes.length.to_s
 					fill 100, 250, 360, 200
 					ellipse 0, 0, 10, 10
 					popMatrix
+					# end
 				else
 					puts "no entry in library"
 				end
 		end		
+		# the above gets run once in setup, then the nodes are SET FOR GOOD
+		# until update(), which clears the nodes out, re-establishes nodes once, redraws
+		# 
 		
 		
 		@alphabet = {"F" => "stroke 40, 100, 100, 60; line(0,0,0,-#{@unit_len * @sublength}); translate(0,-#{@unit_len * @sublength})", # Nodes

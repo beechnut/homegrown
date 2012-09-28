@@ -33,10 +33,17 @@ class WordController
 	
 	def initialize(word)
 		@word = word
+		@open_brackets = 0
+		@close_brackets = 0
 	end
 	
-	def rotate_branch(branch, )
-		
+	# VERY INCOMPLETE
+	def rotate_branch(node_substring)
+		# plusses and minuses at the start of an open bracket ONLY
+		@pair = get_branch_at(node_substring)
+		@node1 = @node_controller.nodes[@pair[0]]
+		@node2 = @node_controller.nodes[@pair[1]]
+		@angle = atan2()
 	end
 	
 	def tally_brackets(cursor)
@@ -59,7 +66,7 @@ class WordController
 		@close_brackets = 0
 		
 		# If it is an open bracket
-		if @word.word[ @cursor ] == "["
+		if @word.word[@cursor..@cursor] == "["
 		puts "WordController#get_branch_at - open bracket"
 			# Add 1 to open_brackets_counter
 			@open_brackets = 1
@@ -71,13 +78,13 @@ class WordController
 			end # while unbalanced
 			
 			@array = [string_position, @cursor]
-			puts "WordController#get_branch_at - open bracket - returns " + @array.to_s
+			puts "WordController#get_branch_at - open bracket - returns " + @array.join(', ').to_s
 			return @array
 			
 		end # if starts open
 		
 		# If it is a closed bracket
-		if @word.word[ @cursor ] == "]"
+		if @word.word[ @cursor..@cursor ] == "]"
 			puts "WordController#get_branch_at - closed bracket"
 			# Add 1 to closed_bracket_counter
 			@close_brackets = 1
@@ -89,13 +96,13 @@ class WordController
 			end #while unbalanced
 			
 			@array = [@cursor, string_position]
-			puts "WordController#get_branch_at - closed bracket - returns " + @array.to_s
+			puts "WordController#get_branch_at - closed bracket - returns " + @array.join(', ').to_s
 			return @array
 						
 		end # if starts closed
 		
 		# If it is neither
-		if @word.word[ @cursor ] != "]" and @word.word[ @cursor ] != "["
+		if @word.word[ @cursor..@cursor ] != "]" and @word.word[ @cursor..@cursor ] != "["
 			puts "WordController#get_branch_at - neither"
 			# count backward until open_bracket > closed_brackets
 			while @open_brackets <= @close_brackets
@@ -120,11 +127,17 @@ class WordController
 			end #while
 		
 			@array << @cursor
-			puts "WordController#get_branch_at - neither - returns " + @array.to_s
+			puts "WordController#get_branch_at - neither - returns " + @array.join(', ').to_s
 			return @array	
 					
 		end #if it is neither
 		
 	end # get branch at
+	
+	def split_into_elements
+		load '~/Documents/repos/grooby/models/_recur.rb'
+		return elements_of(@word)
+	end	
+	
 	
 end

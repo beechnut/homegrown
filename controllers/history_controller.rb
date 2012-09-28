@@ -1,8 +1,6 @@
 # 
-# History and HistoryController
+# HistoryController
 # written by Matt Cloyd
-#
-# started September 2012, alpha finished  ...
 #
 
 # 

@@ -2,6 +2,8 @@ class NodeController
 
 	include Processing::Proxy  # A proxy mixin lets you use Processing methods
 
+	load '../models/node.rb'
+	
 	attr_reader :nodes
 	
 	def initialize
@@ -34,6 +36,19 @@ class NodeController
 		end
 	end
 	
+	# Draw Lines Between Nodes
+	# draw lines between all the nodes
+	#def draw_lines
+	#	@nodes.each_with_index do |node, index|
+	#		unless index == 0
+	#			stroke 100
+	#			stroke_weight 2
+	#			line(@nodes[index-1].node_x, @nodes[index-1].node_y, node.node_x, node.node_y)
+	#			puts " a line"
+	#		end
+	#	end
+	#end
+	
 	# Mouse Click on a node becomes the moving node, or releases it
 	# 
 	def mouse_clicked
@@ -56,6 +71,7 @@ class NodeController
 			@now_moving = nil
 		end
 		puts "NodeController#mouse_clicked: now moving node at @nodes[" + @now_moving.to_s + "]"
+		return @now_moving
 	end
 	
 	# Mouse moved
@@ -65,7 +81,8 @@ class NodeController
 			# move it with the mouse, kind of, i mean it should work
 			@nodes[@now_moving].node_x += (mouse_x - pmouse_x)  # DON'T USE THIS IN FINAL
 			@nodes[@now_moving].node_y += (mouse_y - pmouse_y)  # DON'T USE THIS IN FINAL
-			# ACTUALLY: atan_of_opening_of_branch_closed_by(@nodes[@now_moving]).to_i.times do puts rotation literal 
+			# ACTUALLY: atan_of_opening_of_branch_closed_by(@nodes[@now_moving]).to_i.times do puts rotation literal
+	
 		end #unless
 	end #mouse_moved
 	

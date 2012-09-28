@@ -13,7 +13,6 @@ class Word
 	# initialize with an input string = word, then split into an array
 	def initialize(word)
 		@word = word
-		@word_array = letter_array(@word)
 	end
 	
 end

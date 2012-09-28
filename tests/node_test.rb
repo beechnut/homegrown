@@ -47,6 +47,7 @@ class NodeTest < Processing::App
 	def draw
 		background 200
 		@node_controller.draw_nodes
+		@node_controller.draw_lines
 	end
 	
 	def mouse_clicked

@@ -13,6 +13,11 @@ class Editor < Processing::App
 		puts "Editor#setup"
 	end
 	
+	# Add BUTTONS FOR GUI, TIMELINE
+	
+	# ADD TREE	
+	
+	# CANVAS / CAMERA
 	def mouse_clicked
 		# Send the mouse click to the Interaction Controller. It'll do the dirty work.
 		@interaction_controller.mouse_clicked

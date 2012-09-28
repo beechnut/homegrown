@@ -2,8 +2,6 @@
 # History and HistoryController
 # written by Matt Cloyd
 #
-# started September 2012, alpha finished  ...
-#
 
 # 
 # Keeps track of all words and modifications to words during the

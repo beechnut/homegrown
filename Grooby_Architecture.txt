@@ -1,7 +1,29 @@
-Description of a "finished" state:
-	Takes in rules to make a plant-like word.
-	Displays the plant, with the trunk getting larger.
-	Plant can be rotated, have branches manipulated, and grown another generation.
+PURPOSE
+To make it easy to visualize and manipulate Lindenmayer Systems into architectural structures.
+To advance organic architecture, rapidly iterate models, and support grant proposals
+	with professional-looking images.
+Enable the easier development of true-to-life L-Systems through accurate visualization.
+
+
+GOAL
+Description of an Oct 14 finished state:
+	Take in an axiom and rules to generate a Lindenmayer System.
+	System has manipulable branches with changes reflected in later generations.
+	Branches contract at higher orders and trunk gets larger as it ages.
+	Generations are traversable (you can see the growth over time) via a dragging timeline.
+	Camera can pan, rotate, and zoom.
+
+Description of a Nov 14 finished state:
+	Grove - multiple trees on the timeline
+	Graftable - trees can be grafted together, and scions can be added
+	Prunable - trees can be cut manually
+	Bezier curves for branches
+
+
+GLOBAL DECISIONS
+HSB
+Only accepted characters for now: F X + - [ ] 
+
 
 
 LIST OF MVC
@@ -12,10 +34,8 @@ History		HistoryController		Timeline								| NOM
 Word		WordController			(represented as Node)					| NOM
 Alphabet	AlphabetController		(AlphaBuilder, eventually)				| ---
 Rule		RuleController			(RuleBuilder, eventually)				| ---
-GUI			EventHandler			GUI										| ---
-ViewOptions	ViewOptionsController	GUI										| ---
-Tree		TreeController			ungghh?									| ---
-Grove		GroveController			bluggh??								| ---
+GUI			InteractionController	GUI										| ---
+Tree		TreeController			in the editor							| ---
 
 
 NOM = Nominal, model and controller fine
@@ -65,7 +85,10 @@ WordController
 	uses generate.rb
 	functions like add_after(letters, substring position in front of which to insert)
 	functions like replace_multiples_at( char to replace, position of a char in the group, number to replace with ) 
-	get_branch_at( string_position_or_array_position_attached_to_node )-=
+	get_branch_at( string_position_or_array_position_attached_to_node )
+	
+	NEEDS: error catching: for loops, validation so it doesn't search outside of a string
+	
 end
 
 Alphabet
@@ -96,11 +119,20 @@ Tree
 end
 
 TreeController
-	draws the trees, next_generation { next_gen_word, update_app_view }
+	draws the trees, next_generation { next_gen_word, update_app_view }, prev gen
+
+	when drawing the branches, use	
+	cylinder_to(node1, node2)
+	NO TO MUCH OF BELOW
+		rotate atan( node2, node1 )
+		the vormplus cylinder( sides, radius, radius * contraction, dist(node2,node1) )
+		inside vormplus' code, inside beginShape(), do the texture cylinder thing
+		 of using texture(img) of bark
 end
 
+
 Editor
-	contains all of it
+	contains Tree, Tools, Button
 end
 
 

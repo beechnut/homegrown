@@ -1,4 +1,4 @@
-def letter_array(word)
+def elements_of(word)
 
 @letters = word.split(//)
 @array = []
