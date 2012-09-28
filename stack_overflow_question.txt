@@ -1,0 +1,37 @@
+
+Including a Module in a Ruby-Processing sketch
+
+When I attempt to include a module into a Ruby-Processing sketch, it returns the following StackOverflowError:
+
+    matt$ rp5 run cylinder_test.rb
+    matt$ Error: Your application used more stack memory than the safety cap.
+    Specify -J-Xss####k to increase it (#### = cap size in KB).
+    Specify -w for full StackOverflowError stack trace
+
+Running the sketch with -w provides no additional information.
+
+The module, Cylinder, includes the **Processing::Proxy** module in order to access begin_shape and end_shape methods, among others. I've tried defining the methods as both class methods and instance methods (with and without "self." preceding the method definition).
+
+    module Cylinder
+        include Processing::Proxy
+        def self.cylinder( sides, r1, r2, h )
+    ...
+
+I have tried removing the "include Processing::Proxy" line, but it just tells me there are undefined constants and methods, which are included in Processing::Proxy. So that's probably not the problem.
+
+The header of my sketch looks like this:
+
+    class CylinderTest < Processing::App
+    
+        load '../controllers/branch_controller.rb'
+        load '../controllers/node_controller.rb'
+        
+        require 'Cylinder.rb'
+        include Cylinder
+    ...
+
+I should point out I'm confident the methods work, because when I wrote the Cylinder module itself as a Ruby-Processing sketch, it ran perfectly.
+
+I am using Ruby-Processing 1.0.11, and Ruby 1.8.7.
+
+So, how can I include the Cylinder module without causing a stack overflow error?

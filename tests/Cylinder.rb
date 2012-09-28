@@ -1,3 +1,5 @@
+#!/usr/bin/ruby
+
 #
 #
 # Cylinder module
@@ -7,12 +9,12 @@
 #
 #
 
-class Cylinder < Processing::App
+module Cylinder
 
-	# include Processing::Proxy
+	include Processing::Proxy
 
 	# function Cylinder(n, r1, r2, h)
-	def cylinder( sides, r1, r2, h )
+	def self.cylinder( sides, r1, r2, h )
 		angle = 360 / sides
 		half_height = h / 2
 		
@@ -55,7 +57,7 @@ class Cylinder < Processing::App
 	# function CylinderBetween(node, node)
 		# get angle between nodes (atan), push-rotate to atan-pop
 	
-	def cylinder_between(node1, node2)
+	def self.cylinder_between(node1, node2)
 		x1 = node1.node_x
 		y1 = node1.node_y
 		x2 = node2.node_x
@@ -77,10 +79,7 @@ class Cylinder < Processing::App
 		popMatrix
 	end
 	
-	load '../controllers/branch_controller.rb'
-	load '../controllers/node_controller.rb'
-	
-	def setup
+		def setup
 	  size 500, 500, P3D
 	  background 0, 0, 100
 	  color_mode(HSB, 100)
@@ -103,8 +102,8 @@ class Cylinder < Processing::App
 		@nc.draw_nodes
 		fill 50, 50, 100, 20
 		stroke 0
-		cylinder_between(@nc.nodes[0], @nc.nodes[1])
-		cylinder_between(@nc.nodes[2], @nc.nodes[3])
+		Cylinder.cylinder_between(@nc.nodes[0], @nc.nodes[1])
+		Cylinder.cylinder_between(@nc.nodes[2], @nc.nodes[3])
 	end
 	
 	def mouse_clicked
@@ -114,5 +113,6 @@ class Cylinder < Processing::App
 	def mouse_moved
 		@nc.mouse_moved
 	end
+
 
 end

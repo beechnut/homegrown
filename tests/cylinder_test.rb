@@ -1,10 +1,10 @@
 #!/usr/bin/ruby
 
-#cyltest
+#CylinderTest
 # by MJC
 
 
-class CylTest < Processing::App
+class CylinderTest < Processing::App
 
 	load '../controllers/branch_controller.rb'
 	load '../controllers/node_controller.rb'
