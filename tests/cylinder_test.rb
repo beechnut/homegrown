@@ -9,7 +9,7 @@ class CylinderTest < Processing::App
 	load '../controllers/branch_controller.rb'
 	load '../controllers/node_controller.rb'
 	
-	require 'Cylinder.rb'
+	require '../models/_cylinder.rb'
 	include Cylinder
 	
 	def setup

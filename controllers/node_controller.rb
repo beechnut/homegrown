@@ -21,12 +21,17 @@ class NodeController
 	# Add node
 	def add_node(x, y, z)
 		@nodes << Node.new(x, y, z)
-		puts "NodeController#add_node: added a node!"
+		#puts "NodeController#add_node: added a node!"
+	end
+	
+	def transfer_node(node)
+		@nodes << node
 	end
 	
 	# Draw Nodes
 	# Draw all nodes, highlighting the one that's being moved, if any
 	def draw_nodes
+		#puts "NodeController#draw_nodes"
 		@nodes.each_with_index do |node, ind|
 			if ind == @now_moving
 				node.highlight
@@ -57,16 +62,16 @@ class NodeController
 			puts "NodeController#mouse_clicked: Moving no node (nil)"
 			# run through the nodes and assign it if it's within the node
 			@nodes.each_with_index do |node, ind|
-				if dist(mouse_x, mouse_y, node.node_x, node.node_y) < @node_size
+				if dist(mouse_x - width/2, mouse_y - height + 20, node.node_x, node.node_y) < @node_size
 					@now_moving = ind
 				end
 				# we're going to have to use screenX to do a comparison of mouse position and node position.
 				# set index of node as an instance var, because dragging will never result in a graft/branch-open/branch-close
 				# @now_moving = node within so many units of mouse_position
 			end
-			if @now_moving.nil?
-					add_node(mouse_x, mouse_y, 0)
-			end
+			#if @now_moving.nil?
+			#		add_node(mouse_x, mouse_y, 0)
+			#end
 		else # if mouse is clicked and there's a node assigned, release it
 			@now_moving = nil
 		end

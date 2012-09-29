@@ -17,21 +17,27 @@ class Tree
 
 	# Word
 	
-	load 'models/word.rb'
-	load 'controllers/word_controller.rb'	
+	load '../models/word.rb'
+	load '../controllers/word_controller.rb'	
 	
 	# History
 
-	load 'models/history.rb'
-	load 'controllers/history_controller.rb'
+	load '../models/history.rb'
+	load '../controllers/history_controller.rb'
+
+	# Nodes
+	
+	load '../models/node.rb'
+	load '../controllers/node_controller.rb'
 	
 	# Branches
 	
-	load 'models/branch.rb'
-	load 'controllers/branch_controller.rb'
+	load '../models/branch.rb'
+	load '../controllers/branch_controller.rb'
 	
 	
-	attr_accessor :trunk_width, :contraction_ratio
+	attr_accessor :trunk_width, :contraction_ratio, :node_controller, :branch_controller
+	attr_reader :word
 	
 	def initialize(word)
 		# - word
@@ -47,13 +53,16 @@ class Tree
 	end
 	
 	def draw
-		# Draw
-			# Draw nodes
-			# Draw branches with display options (start as line, then cyl, then textured cyl)
+		@branch_controller.draw_branches
+		@node_controller.draw_nodes
 	end
 	
-	def add_branch(start_point, end_point)
-		@branch_controller.add_branch(start_point[0], start_point[1], start_point[2], end_point[0], end_point[1], end_point[2])
+	def add_branch(start_node, end_node, order=0)
+		@branch_controller.add_branch(start_node, end_node, order)
+	end
+	
+	def transfer_node(node)
+		@node_controller.transfer_node(node)
 	end
 	
 	def add_node

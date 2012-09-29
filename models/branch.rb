@@ -4,9 +4,10 @@ class Branch
 
 	attr_reader :start_point, :end_point
 	
-	def initialize( node1, node2 )
+	def initialize( node1, node2, order = 0 )
 		@start_point = node1
 		@end_point = node2
+		@order = order
 	end
 	
 	def draw_as_line

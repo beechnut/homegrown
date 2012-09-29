@@ -36,14 +36,15 @@ class Node
 		@node_x = x
 		@node_y = y
 		@node_z = z
-		
+		puts "Node#initialize at x = #{@node_x}, y = #{@node_y}, z = #{@node_z}"
 		#@node_x = model_x( 0, 0, 0 ) # each node stores its location in
 		#@node_y = model_y( 0, 0, 0 ) # the model for later comparison
 		#@node_z = model_z( 0, 0, 0 ) # to the mouse for highlighting, etc.
 	end
 	
 	# Draws itself as an ellipse
-	def draw		
+	def draw
+		#puts "Node#draw : #{@node_x}, #{@node_y}"
 		no_stroke
 		fill 40, 50, 70
 		ellipse(@node_x, @node_y, @@node_size, @@node_size)

@@ -6,8 +6,8 @@ class BranchController
 		@branches = []
 	end
 	
-	def add_branch(node1, node2)
-		@branches << Branch.new(node1, node2)
+	def add_branch(node1, node2, order=0)
+		@branches << Branch.new(node1, node2, order)
 	end
 	
 	def draw_branches
@@ -26,5 +26,9 @@ class BranchController
 			end # conditional
 		end # each do
 	end # find match of
+	
+	def angle(node)
+		
+	end
 	
 end
