@@ -6,6 +6,7 @@
 #
 # A tree has a
 #		- word
+#		- rules
 #		- history
 #		- appearance
 #			- branches
@@ -19,6 +20,10 @@ class Tree
 	
 	load '../models/word.rb'
 	load '../controllers/word_controller.rb'	
+	
+	# Rules, because the TREE stores the rules. It's inherent.
+	
+	load '../rule_classes.rb'
 	
 	# History
 
@@ -36,15 +41,21 @@ class Tree
 	load '../controllers/branch_controller.rb'
 	
 	
-	attr_accessor :trunk_width, :contraction_ratio, :node_controller, :branch_controller
-	attr_reader :word
+	
+	attr_accessor :trunk_width, :contraction_ratio, :word, :node_controller, :branch_controller, :word_controller, :history_controller
+	attr_reader :rules
 	
 	def initialize(word)
 		# - word
 		@word = Word.new(word)
 		@word_controller = WordController.new(@word)
+		# - rules
+		@a = Rule.new( nil, nil, "X", nil, 1, "F[+X]F[-X]+X" )
+		@b = Rule.new( nil, nil, "F", nil, 1, "FF" )
+		@rules = [ @a, @b ]
 		# - history
 		@history = History.new(@word)
+		@history_controller = HistoryController.new(@history)
 		# - appearance
 		@node_controller = NodeController.new
 		@branch_controller = BranchController.new
@@ -67,6 +78,10 @@ class Tree
 	
 	def add_node
 		@node_controller.add_node( model_x(0,0,0), model_y(0,0,0), model_z(0,0,0) )
+	end
+	
+	def update_angle( angle, node )
+		@word_controller.update_angle( angle, node )
 	end
 
 end 

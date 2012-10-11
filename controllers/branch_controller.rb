@@ -12,10 +12,16 @@ class BranchController
 	
 	def draw_branches
 		@branches.each do |branch|
-			branch.draw_as_line
+			#branch.draw_as_line
+			branch.draw_as_cylinder
 		end
 	end
 	
+	def empty
+		@branches = []
+	end
+	
+	# get the other node in the branch
 	def find_match_of(node)
 		# gets the other node in the branch that contains the passed-in node
 		@branches.each do |branch|
@@ -27,8 +33,13 @@ class BranchController
 		end # each do
 	end # find match of
 	
+	# returns degrees between a node and its pair
 	def angle(node)
-		
+		@node1 = find_match_of(node)
+		@node2 = node
+		@angle = Math.atan2( @node2.node_y - @node1.node_y, @node2.node_x - @node1.node_x )
+		puts "BranchController#angle: " + @angle.to_s
+		return @angle
 	end
 	
 end

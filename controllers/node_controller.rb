@@ -19,9 +19,14 @@ class NodeController
 	end
 	
 	# Add node
-	def add_node(x, y, z)
-		@nodes << Node.new(x, y, z)
-		#puts "NodeController#add_node: added a node!"
+	def add_node(x, y, z, str_pos)
+		@nodes << Node.new(x, y, z, str_pos)
+		#puts "NodeController#add_node: Added a node!"
+	end
+	
+	# Empty out the array
+	def empty
+		@nodes = []
 	end
 	
 	def transfer_node(node)
@@ -62,7 +67,14 @@ class NodeController
 			puts "NodeController#mouse_clicked: Moving no node (nil)"
 			# run through the nodes and assign it if it's within the node
 			@nodes.each_with_index do |node, ind|
-				if dist(mouse_x - width/2, mouse_y - height + 20, node.node_x, node.node_y) < @node_size
+				
+				##### BELOW LINE IS FOR USE IN NOT THE APP
+				#if dist(mouse_x, mouse_y, node.node_x, node.node_y) < @node_size
+				#######
+				
+				##### BELOW LINE IS FOR USE IN THE APP, FOR THE OFFSET SCREWS WITH STUFF, NEED TO ADJUST SOMEHOW
+			  if dist(mouse_x - width/2, mouse_y - height + 20, node.node_x, node.node_y) < @node_size
+				#######
 					@now_moving = ind
 				end
 				# we're going to have to use screenX to do a comparison of mouse position and node position.

@@ -23,13 +23,13 @@ class BranchTest < Processing::App
 		@bc = BranchController.new
 		
 		# top node set
-		@nc.add_node(50, 50, 0)
-		@nc.add_node(100, 50, 0)
+		@nc.add_node(50, 50, 0, 0)
+		@nc.add_node(100, 50, 0, 0)
 		@bc.add_branch(@nc.nodes[0], @nc.nodes[1])
 		
 		#bottom node set
-		@nc.add_node(50, 100, 0)
-		@nc.add_node(100, 100, 0)
+		@nc.add_node(50, 100, 0, 0)
+		@nc.add_node(100, 100, 0, 0)
 		@bc.add_branch(@nc.nodes[2], @nc.nodes[3])
 	end
 	

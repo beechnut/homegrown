@@ -1,29 +1,47 @@
+NAMES
+Arbortect
+Homegrown
+
+
+
 PURPOSE
-To make it easy to visualize and manipulate Lindenmayer Systems into architectural structures.
+To make it easy to visualize 3D Lindenmayer Systems and manipulate them into architectural structures.
 To advance organic architecture, rapidly iterate models, and support grant proposals
 	with professional-looking images.
 Enable the easier development of true-to-life L-Systems through accurate visualization.
 
-
 GOAL
-Description of an Oct 14 finished state:
-	Take in an axiom and rules to generate a Lindenmayer System.
-	System has manipulable branches with changes reflected in later generations.
-	Branches contract at higher orders and trunk gets larger as it ages.
-	Generations are traversable (you can see the growth over time) via a dragging timeline.
-	Camera can pan, rotate, and zoom.
+Description of an Oct 14 finished state, 0.0.1 :
+	# Take in an axiom and rules to generate a word.
+	# System has manipulable branches with manipulations reflected in later generations.
+	# Manipulable only in 2D.
+	# Generations are traversable (you can see the growth over time) via buttons.
+	# Only accepted characters for now: F X + - [ ] 
+	Branches contract at higher orders and { trunk gets larger as it ages }.
+	{ Camera can pan and zoom. }
+	{ HSB 100 }
+	Mildly photorealistic in terms of color.
+	Styles all push and pop.
+	Thorough documentation.
 
-Description of a Nov 14 finished state:
-	Grove - multiple trees on the timeline
-	Graftable - trees can be grafted together, and scions can be added
-	Prunable - trees can be cut manually
+Description of a Nov 14 0.0.2 :
+	Manipulable in 3D
+	Camera can rotate.
+	Adaptive cylinder drawing becomes less fine as generations or nodes increase.
+	Grove - multiple trees on the timeline, in the scene.
+	Graftable - trees can be grafted together, and scions can be added along branches.
+	Prunable - trees can be cut manually, or incorporate
 	Bezier curves for branches
+	Massive upgrade to character set, to incorporate 3D rotation, flowering, leafing, cutting, signal processing
+	Thorough documentation.
+	Self-contained applet.
 
 
-GLOBAL DECISIONS
-HSB
-Only accepted characters for now: F X + - [ ] 
-
+Description of a Dec 14 0.0.3 :
+	Parametric L-Systems supported.
+	Tree selector.
+	Crisp, intuitive GUI.
+	Thorough documentation.
 
 
 LIST OF MVC
@@ -32,10 +50,11 @@ MODEL		CONTROLLER				VIEW									STATUS
 Node		NodeController			Imager									| NOM
 History		HistoryController		Timeline								| NOM
 Word		WordController			(represented as Node)					| NOM
-Alphabet	AlphabetController		(AlphaBuilder, eventually)				| ---
-Rule		RuleController			(RuleBuilder, eventually)				| ---
-GUI			InteractionController	GUI										| ---
-Tree		TreeController			in the editor							| ---
+Alphabet	AlphabetController		(AlphaBuilder, eventually)				| NOM
+Rule		RuleController			(RuleBuilder, eventually)				| UNI
+GUI			GUIController			Button Panels							| ---
+Tree		TreeController			in the editor							| NOM
+Branch		BranchController		in the tree								| NOM
 
 
 NOM = Nominal, model and controller fine
@@ -45,6 +64,20 @@ N|- = Nominal model, Untested controller
 FLD = Failed / not ready
 RTH = Failed, Rethink / not ready
 FIN = Finished Model, Controller, and View
+UNI = Unimplemented but pretty much good to go
+
+
+
+
+
+
+Rotation & dragging a little buggy, angle not calculating correctly.
+Next steps: - try inline cylinder module
+				-- ask Jeremy Ashkenas about Cylinder module
+			- historical tree. 
+			
+When there's time: refactor so that TreeController has all the control,
+instead of Tree, which is what's happening now. It's annoying.
 
 
 

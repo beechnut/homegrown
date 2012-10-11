@@ -1,11 +1,19 @@
-class Branch
+#!/usr/bin/ruby
 
-	include Processing::Proxy
-	attr_reader :start_point, :end_point
-	require '../models/node.rb'
+#
+#
+# Cylinder module
+# ripped with credit from
+#   http:#vormplus.be/blog/article/drawing-a-cylinder-with-processing 
+#   http:#processing.org/learning/topics/texturecylinder.html
+#
+#
+
+class Cylinder < Processing::App
+
+	require 'node.rb'
 	require '../controllers/node_controller.rb'
 
-	
 	# function Cylinder(n, r1, r2, h)
 	def cylinder( sides, r1, r2, h )
 		angle = 360 / sides
@@ -48,7 +56,7 @@ class Branch
 	end
 	
 	# function CylinderBetween(node, node)
-		# get angle between nodes (atan), push - rotate to atan - 1pop
+		# get angle between nodes (atan), push-rotate to atan-pop
 	
 	def cylinder_between(node1, node2)
 		x1 = node1.node_x
@@ -68,32 +76,44 @@ class Branch
 			# rotate to atan
 			rotate_x(radians(90))
 			rotate_y(angle)
-			cylinder(20, 20/(@order+1), 20/(@order), dist)
+			cylinder(20, 50, 10, dist)
 		popMatrix
 	end
 	
-	
-	def initialize( node1, node2, order = 0 )
-		@start_point = node1
-		@end_point = node2
-		@order = order
+	def setup
+	  size 500, 500, P3D
+	  background 0, 0, 100
+	  color_mode(HSB, 100)
+	  fill 50, 50, 100, 20
+	  stroke 0
+	  #translate width/2, height/2
+	  #rotate_x(radians(90))
+	  
+	  @nc = NodeController.new
+	  @nc.add_node(200, 200, 0, 1)
+	  @nc.add_node(100, 200, 0, 2)
+	  
+	  @nc.add_node(200, 100, 0, 3)
+	  @nc.add_node(100, 100, 0, 4)
+
 	end
 	
-	def draw_as_line
-		pushStyle
-			stroke 0, 0, 0
-			stroke_weight 2
-			line(@start_point.node_x, @start_point.node_y, @start_point.node_z, @end_point.node_x, @end_point.node_y, @end_point.node_z)
-		popStyle
+	def draw
+		background 0, 0, 100
+		@nc.draw_nodes
+		fill 50, 50, 100, 20
+		stroke 0
+		cylinder_between(@nc.nodes[0], @nc.nodes[1])
+		cylinder_between(@nc.nodes[2], @nc.nodes[3])
 	end
 	
-	def draw_as_cylinder
-		pushStyle
-			no_stroke
-			fill 197, 194, 191
-			cylinder_between(@start_point, @end_point)
-		popStyle
+	def mouse_clicked
+		@a = @nc.mouse_clicked
 	end
 	
+	def mouse_moved
+		@nc.mouse_moved
+	end
+
 
 end

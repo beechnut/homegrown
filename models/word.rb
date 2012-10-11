@@ -5,8 +5,6 @@
 #
 
 class Word
-
-	load '~/Documents/repos/grooby/models/_recur.rb'
 	
 	attr_reader :word
 	

@@ -16,7 +16,7 @@
 class Node
 	
 	include Processing::Proxy  # A proxy mixin lets you use Processing methods
-	attr_accessor :node_x, :node_y, :node_z, :position
+	attr_accessor :node_x, :node_y, :node_z, :str_pos
 	
 	# Represents a branchpoint, either initial or terminal.
 	# Displays differently pop vs push.
@@ -32,11 +32,12 @@ class Node
 		@@node_size
 	end
 	
-	def initialize(x, y, z)
+	def initialize(x, y, z, str_pos)
 		@node_x = x
 		@node_y = y
 		@node_z = z
-		puts "Node#initialize at x = #{@node_x}, y = #{@node_y}, z = #{@node_z}"
+		@str_pos = str_pos
+		#puts "Node#initialize at x = #{@node_x}, y = #{@node_y}, z = #{@node_z}"
 		#@node_x = model_x( 0, 0, 0 ) # each node stores its location in
 		#@node_y = model_y( 0, 0, 0 ) # the model for later comparison
 		#@node_z = model_z( 0, 0, 0 ) # to the mouse for highlighting, etc.
@@ -45,16 +46,21 @@ class Node
 	# Draws itself as an ellipse
 	def draw
 		#puts "Node#draw : #{@node_x}, #{@node_y}"
-		no_stroke
-		fill 40, 50, 70
-		ellipse(@node_x, @node_y, @@node_size, @@node_size)
+		#puts "Node#draw: str_pos: " + @str_pos.to_s
+		pushStyle
+			no_stroke
+			fill 40, 50, 70
+			ellipse(@node_x, @node_y, @@node_size, @@node_size)
+		popStyle
 	end
 	
 	# Draws itself as a yellow ellipse
 	def highlight
-		no_stroke
-		fill 14, 70, 70
-		ellipse(@node_x, @node_y, @@node_size + @@expand, @@node_size + @@expand)
+		pushStyle
+			no_stroke
+			fill 14, 70, 70
+			ellipse(@node_x, @node_y, @@node_size + @@expand, @@node_size + @@expand)
+		popStyle
 	end
 
 end

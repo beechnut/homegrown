@@ -17,10 +17,19 @@ class HistoryController
 
 	attr_reader :generations, :modifications
 	
+	require '../generate.rb'
+	require '../models/word.rb'
+	
 	# Call this controller on a history to get control of it.
 	def initialize(history)
 		@generations = history.generations
 		@modifications = history.modifications
+		@n = 0
+		
+		puts "history.generations: " + history.generations.to_s
+		puts "history.generations[0].word: " + history.generations[0].word.to_s
+		puts @generations.length
+		puts "index " + @n.to_s + " of a max " + (@generations.length-1).to_s + " (length " + (@generations.length).to_s + ")"
 		# will instance variables with the same name have namespacing issues?
 	end
 	
@@ -40,14 +49,14 @@ class HistoryController
 	
 	# read gen from generations
 	def get_generation(n)
-		return @generations[n].to_s
+		return @generations[n]
 	end
 	
 	# MODIFICATIONS[]
 	
 	# add word to modifications
 	def add_modification(word)
-		@modifications.last = word
+		@modifications[@modifications.length-1] = word
 	end
 	
 	# replace word
@@ -57,7 +66,7 @@ class HistoryController
 	
 	# read modification from modifications
 	def get_modification(n)
-		return @modifications[n].to_s
+		return @modifications[n]
 	end
 	
 	
@@ -93,17 +102,56 @@ class HistoryController
 	# print out all gens & mods
 	def print_history
 		@generations.each_with_index do | gen, n |
-			puts "gen: " + n.to_s + " - " + gen.to_s + " | mod: " + @modifications[n].to_s
+			puts "gen: " + n.to_s + " - " + gen.word.to_s + " | mod: " + @modifications[n].to_s
+		end
+	end
+	
+	
+	### Returnable: Is there a modification? If so, return mod, else return gen
+	def returnable
+		if get_modification(@n).nil?
+			# puts "HistoryController#returnable: no modifications, so the generation was returned"
+			return get_generation(@n)
+		else
+			# puts "HistoryController#returnable: modification was returned"
+			return get_modification(@n)
 		end
 	end
 	
 	
 	
 	#### AGE ADVANCEMENT
-	def next_generation_from_generation(n)
+	def advance_generation(rules)
+	  puts "HistoryController#advance_generation"
+	  # if this is the last generation
+	  if @n == @generations.length-1
+	  	# take the word and generate it into the next generation
+	  	# add_generation(Word.new("hi")) # this works, meaning it's a namespacing issue
+	  	add_generation(Word.new(generate(returnable, rules, 1))) #should be accessing with .word
+	  	# add_generations is apparently replacing all entries with new word
+	  end
+	  # we move forward in the array
+	  @n +=1
+		puts "index " + @n.to_s + " of a max " + (@generations.length-1).to_s + " (length " + (@generations.length).to_s + ")"
+		print_history
+		return returnable
 	end
 	
-	def next_generation_from_modification(n)
+	def regress_generation
+		puts "HistoryController#regress_generation"
+		# if this is the first generation
+		if @n == 0
+			# puts that it's the first generation
+			puts "HistoryController#regress_generation says: We're at the first generation. Can't go back."
+		# else if this is not the first generation
+		else
+			# move back a generation (n-=1)
+			@n -= 1
+			puts "index " + @n.to_s + " of a max " + (@generations.length-1).to_s + " (length " + (@generations.length).to_s + ")"
+			print_history
+			return returnable
+		end # conditional regression
+		
 	end
 	
 

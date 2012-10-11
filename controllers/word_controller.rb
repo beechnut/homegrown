@@ -137,7 +137,66 @@ class WordController
 	def split_into_elements
 		load '~/Documents/repos/grooby/models/_recur.rb'
 		return elements_of(@word)
-	end	
+	end
+	
+	# for WordController
+	def update_angle( angle, node, match, angle_deg )
+		puts "WordController#update_angle: angle: #{angle}, node: #{node}, match: #{match}, angle_deg: #{angle_deg} "
+		# set new_rotation_char (+,-) based on sign
+		@literal = "-"
+		@adjustment = 90
+		 
+		@pos1 = node.str_pos
+		@pos2 = match.str_pos
+		
+		if @pos2 < @pos1
+			@pos3 = @pos1
+			@pos1 = @pos2
+			@pos2 = @pos3
+		end
+		
+		if @pos1 == @pos2
+			puts "WordController#update_angle: Well, we're fucked. How are these positions equal?"
+		end
+		
+		#now that @pos1 is definitely the smallest, step forward from there until you hit the first bracket
+		@next_bracket = ""
+		@pos = @pos1
+		while @next_bracket == "" do
+		  @pos += 1
+		  if @word.word[@pos..@pos] == "[" or @word.word[@pos..@pos] == "]"
+				@next_bracket = @pos
+		  end
+		end
+		
+		
+		if angle > 0
+			@literal = "+"
+			@adjustment = -90
+		end
+		@times = ((angle+@adjustment)/angle_deg).abs.to_i
+		puts "times " + @times.to_s
+		@rotation_literal_set = ""
+		@times.times do
+			@rotation_literal_set << @literal
+		end
+		if @rotation_literal_set == ""
+			@rotation_literal_set << @literal
+		end
+				
+		puts "WordController#update_angle, @rotation_literal_set = #{@rotation_literal_set}"
+		
+		puts "pos1: " + @pos1.to_s + ", pos2: " + @pos2.to_s
+		
+		
+		# replace any +/- with 
+		# regex starting at str_pos for a line of rotation literals +,-, more later
+			# replace with angle/system_angle.times do @rotation_string << new_rot_char
+
+		@word.word[ @pos1..@next_bracket ] = @word.word[ @pos1..@next_bracket ].gsub( /(\++|-+)/, @rotation_literal_set )
+		puts "WORD: " + @word.word.to_s
+		
+	end 	#update angle
 	
 	
 end

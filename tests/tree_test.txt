@@ -1,8 +1,0 @@
-# Tree and TreeController Test
-
-# kind of a big deal
-# tests whether the tree creates, displays, and is manipulable
-
-# later version will test future, next generations
-# gui
-# two rects, on mouse clicked move forward, backward a generation
