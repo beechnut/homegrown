@@ -50,7 +50,7 @@ class Tree
 		@word = Word.new(word)
 		@word_controller = WordController.new(@word)
 		# - rules
-		@a = Rule.new( nil, nil, "X", nil, 1, "F[+X]F[-X]+X" )
+		@a = Rule.new( nil, nil, "X", nil, 1, "F[+X]F[-X]X" )
 		@b = Rule.new( nil, nil, "F", nil, 1, "FF" )
 		@rules = [ @a, @b ]
 		# - history
@@ -59,12 +59,13 @@ class Tree
 		# - appearance
 		@node_controller = NodeController.new
 		@branch_controller = BranchController.new
-		@trunk_width = 30
+		@trunk_width = 5
+		@trunk_increment = 3
 		@contraction_ratio = 0.7
 	end
 	
 	def draw
-		@branch_controller.draw_branches
+		@branch_controller.draw_branches(@trunk_width, @trunk_increment, @contraction_ratio, @history_controller.n.to_i)
 		@node_controller.draw_nodes
 	end
 	

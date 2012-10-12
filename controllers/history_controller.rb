@@ -15,8 +15,8 @@
 
 class HistoryController
 
-	attr_reader :generations, :modifications
-	
+	attr_reader :generations, :modifications, :n
+		
 	require '../generate.rb'
 	require '../models/word.rb'
 	
@@ -132,6 +132,7 @@ class HistoryController
 	  end
 	  # we move forward in the array
 	  @n +=1
+	  $generation = @n
 		puts "index " + @n.to_s + " of a max " + (@generations.length-1).to_s + " (length " + (@generations.length).to_s + ")"
 		print_history
 		return returnable
@@ -143,10 +144,12 @@ class HistoryController
 		if @n == 0
 			# puts that it's the first generation
 			puts "HistoryController#regress_generation says: We're at the first generation. Can't go back."
+			return returnable # returns @n=0
 		# else if this is not the first generation
 		else
 			# move back a generation (n-=1)
 			@n -= 1
+			$generation = @n
 			puts "index " + @n.to_s + " of a max " + (@generations.length-1).to_s + " (length " + (@generations.length).to_s + ")"
 			print_history
 			return returnable

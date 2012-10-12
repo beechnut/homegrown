@@ -112,6 +112,11 @@ class HistoryTreeTest < Processing::App
 	def setup
 		size 1000, 800, OPENGL
 		background 255
+
+		# Camera Control		
+		@ix = 0
+		@iy = 0
+		@iz = 0
 		
 		@c1 = color(50, 50, 150)
 		@c2 = color(50, 150, 50)
@@ -144,11 +149,33 @@ class HistoryTreeTest < Processing::App
 	def draw
 		background 255
 		lights
-			pushMatrix
+		pushMatrix
 			translate width/2, height-20
 			@tc.draw
 		popMatrix
 		@bc.hover_assess
+		camera(width/2.0, height/2.0, (height/2.0) / tan(PI*30.0 / 180.0) + @iz, #
+					width/2.0, height/2.0 + @ix, 0, #
+					0, 1, 0) #
+		puts "HistoryTreeTest#draw"
+	end
+	
+	def key_pressed
+		case key
+			when 'w'
+				puts "TreeController#key_pressed: w, eyeX+50 " + @ix.to_s
+				@ix -= 50
+			when 's'
+				puts "TreeController#key_pressed: s, eyeX-50 " + @ix.to_s
+				@ix += 50
+			when 'e'
+				puts "TreeController#key_pressed: e, eyeZ-50 " + @iz.to_s
+				@iz -= 50
+			when 'd'
+				puts "TreeController#key_pressed: d, eyeZ+50 " + @iz.to_s
+				@iz += 50
+		end
+		redraw
 	end
 		
 	def mouse_clicked

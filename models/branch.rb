@@ -12,10 +12,11 @@ class Branch
 		half_height = h / 2
 		
 		# top
-		#img = load_image("stone.jpg")
+		img = PImage.new
+		img = load_image('../models/stone.jpg')
 		#texture_mode(NORMALIZED)
 		begin_shape
-		#texture(img)
+		texture(img)
 		for i in 0..sides
 			x = cos( radians( i * angle ) ) * r1
 			y = sin( radians( i * angle ) ) * r1
@@ -25,7 +26,7 @@ class Branch
 		
 		# bottom
 		begin_shape
-		#texture(img)
+		texture(img)
 		for i in 0..sides
 			x = cos( radians( i * angle ) ) * r2
 			y = sin( radians( i * angle ) ) * r2
@@ -35,7 +36,7 @@ class Branch
 		
 		# draw body
 		begin_shape(TRIANGLE_STRIP)
-		#texture(img)
+		texture(img)
 		for i in 0..sides
 			x1 = cos( radians( i * angle ) ) * r1
 			y1 = sin( radians( i * angle ) ) * r1
@@ -49,8 +50,7 @@ class Branch
 	
 	# function CylinderBetween(node, node)
 		# get angle between nodes (atan), push - rotate to atan - 1pop
-	
-	def cylinder_between(node1, node2)
+	def cylinder_between(node1, node2, trunk_width, trunk_increment, contraction_ratio, gen)
 		x1 = node1.node_x
 		y1 = node1.node_y
 		x2 = node2.node_x
@@ -68,7 +68,13 @@ class Branch
 			# rotate to atan
 			rotate_x(radians(90))
 			rotate_y(angle)
-			cylinder(20, 20/(@order+1), 20/(@order), dist)
+
+			#puts "Branch#cylinder_between: gen = " + gen.to_s
+			@sides = 35
+			@sides = 35 / gen unless gen == 0
+			@r1 = (trunk_width + gen * trunk_increment)/(@order+1)
+			@r2 = (trunk_width + gen * trunk_increment)/(@order)
+			cylinder(@sides, @r1, @r2, dist)
 		popMatrix
 	end
 	
@@ -87,11 +93,11 @@ class Branch
 		popStyle
 	end
 	
-	def draw_as_cylinder
+	def draw_as_cylinder(trunk_width, trunk_increment, contraction_ratio, gen)
 		pushStyle
 			no_stroke
 			fill 197, 194, 191
-			cylinder_between(@start_point, @end_point)
+			cylinder_between(@start_point, @end_point, trunk_width, trunk_increment, contraction_ratio, gen)
 		popStyle
 	end
 	

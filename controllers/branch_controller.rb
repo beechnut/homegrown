@@ -10,10 +10,10 @@ class BranchController
 		@branches << Branch.new(node1, node2, order)
 	end
 	
-	def draw_branches
+	def draw_branches(trunk_width, trunk_increment, contraction_ratio, gen)
 		@branches.each do |branch|
 			#branch.draw_as_line
-			branch.draw_as_cylinder
+			branch.draw_as_cylinder(trunk_width, trunk_increment, contraction_ratio, gen)
 		end
 	end
 	

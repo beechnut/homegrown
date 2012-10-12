@@ -14,19 +14,26 @@ GOAL
 Description of an Oct 14 finished state, 0.0.1 :
 	# Take in an axiom and rules to generate a word.
 	# System has manipulable branches with manipulations reflected in later generations.
-	# Manipulable only in 2D.
 	# Generations are traversable (you can see the growth over time) via buttons.
 	# Only accepted characters for now: F X + - [ ] 
-	Branches contract at higher orders and { trunk gets larger as it ages }.
-	{ Camera can pan and zoom. }
-	{ HSB 100 }
-	Mildly photorealistic in terms of color.
-	Styles all push and pop.
-	Thorough documentation.
+	# Branches contract at higher orders and trunk gets larger as it ages.
+	# Mildly photorealistic in terms of color.
+	# Styles all push and pop.
+	# Camera can pan and zoom.
+  BUG Manipulable, but only in 2D.
+ TODO Thorough documentation.
+	
+	BUG WORK:
+		On one mouse click, it assumes a release.
+		Need to toggle release, not just count mouse_clicks % 2.
 
 Description of a Nov 14 0.0.2 :
-	Manipulable in 3D
+	Code refactored to more accurate MVC architecture.
+	Manipulable in 3D.
+	Textured.
+	Standardized color mode.
 	Camera can rotate.
+	Handles rotation literals not appearing right before a bracket.
 	Adaptive cylinder drawing becomes less fine as generations or nodes increase.
 	Grove - multiple trees on the timeline, in the scene.
 	Graftable - trees can be grafted together, and scions can be added along branches.
@@ -34,6 +41,7 @@ Description of a Nov 14 0.0.2 :
 	Bezier curves for branches
 	Massive upgrade to character set, to incorporate 3D rotation, flowering, leafing, cutting, signal processing
 	Thorough documentation.
+	GUI separate from camera control.
 	Self-contained applet.
 
 
@@ -42,6 +50,7 @@ Description of a Dec 14 0.0.3 :
 	Tree selector.
 	Crisp, intuitive GUI.
 	Thorough documentation.
+	Sketchup plugin; Sketchup is rendering engine.
 
 
 LIST OF MVC

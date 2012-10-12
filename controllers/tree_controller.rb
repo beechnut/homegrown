@@ -52,7 +52,7 @@ class TreeController
 						while @i >= 0 do
 							# puts "i = " + @i.to_s
 							if @closed_nodes[@i].nil?
-								puts "TreeController#interpret: closed_node" + @i.to_s + " is nil"
+								# puts "TreeController#interpret: closed_node" + @i.to_s + " is nil"
 								break
 							end
 							@i -= 1
@@ -152,7 +152,7 @@ class TreeController
 		
 		# get the angle between the released node and its partner in the branch
 		@released_node = @tree.node_controller.nodes[@released] unless @released.nil?
-		puts "released: " + @released_node.to_s
+		puts "TreeController#mouse_clicked: released: " + @released_node.to_s
 		@angle_to_write = @tree.branch_controller.angle( @released_node ) unless @released_node.nil? #degrees
 		
 		#match to pass to update angle
@@ -160,6 +160,7 @@ class TreeController
 		@tree.history_controller.add_modification( @tree.word_controller.update_angle( degrees(@angle_to_write), @released_node, @match, @@angle_deg ) ) unless @released_node.nil?
 		
 		$mouse_clicks += 1
+		puts $mouse_clicks #didn't even get to this
 		if $mouse_clicks % 2 == 0
 		  disintegrate
 		  interpret
