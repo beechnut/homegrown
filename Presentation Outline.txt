@@ -1,0 +1,33 @@
++ Urban Intervention: Seed Sole
+
+	Drawings
+	Prototype
+
+
+
++ Urban Intervention: Cafe Cards
+
+	Have triangle stack printed out
+	
+	
+
++ Urban Intervention: smartphone...booths
+
+	Sketchup, renderings of smartphonebooths.
+
+
+
++ Organic Architecture
+
+	Quick history.
+	Photos and video from Axel Erlandson's trees in Gilroy.
+	Problem: Growth time in relation to lifetime.
+	Solution: Digital modeling for rapid iteration.
+	Demo hiver.
+	Slideshow of the creations you can build in hiver.
+	Plans for primavera, verano, and autumn. Long-term goals and purpose.
+	Show physical model: this is the kind of control I want to get to.
+	Plan is to build a community around organic architecture.
+		Fork the repos to get the modeling software to a professional state.
+		Find a plot of land to start planting.
+	

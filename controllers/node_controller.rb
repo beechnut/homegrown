@@ -11,7 +11,10 @@ class NodeController
 		@nodes = []
 		
 		# No node is being moved upon setup.
-		@now_moving = nil
+		@now_moving = nil # TODO: DELETE THIS
+		
+		@held = nil
+		@released = nil
 		
 		# Set a variable that stores how large each node is drawn
 		@node_size = Node::get_node_size
@@ -62,44 +65,44 @@ class NodeController
 	# Mouse Click on a node becomes the moving node, or releases it
 	# 
 	def mouse_clicked
-		# if mouse is clicked and now_moving has no node
-		if @now_moving.nil?
-			puts "NodeController#mouse_clicked: Moving no node (nil)"
-			# run through the nodes and assign it if it's within the node
-			@nodes.each_with_index do |node, ind|
-				
-				##### BELOW LINE IS FOR USE IN NOT THE APP
-				#if dist(mouse_x, mouse_y, node.node_x, node.node_y) < @node_size
-				#######
-				
-				##### BELOW LINE IS FOR USE IN THE APP, FOR THE OFFSET SCREWS WITH STUFF, NEED TO ADJUST SOMEHOW
-			  if dist(mouse_x - width/2, mouse_y - height + 20, node.node_x, node.node_y) < @node_size
-				#######
-					@now_moving = ind
-				end
-				# we're going to have to use screenX to do a comparison of mouse position and node position.
-				# set index of node as an instance var, because dragging will never result in a graft/branch-open/branch-close
-				# @now_moving = node within so many units of mouse_position
-			end
-			#if @now_moving.nil?
-			#		add_node(mouse_x, mouse_y, 0)
-			#end
-		else # if mouse is clicked and there's a node assigned, release it
-			@now_moving = nil
-		end
-		puts "NodeController#mouse_clicked: now moving node at @nodes[" + @now_moving.to_s + "]"
-		return @now_moving
+		#puts "NodeController#mouse_clicked"
+		#loop through nodes
+		@nodes.each do |node|
+			#puts "NodeController#mouse_clicked: node " + node.to_s + " at (" + node.node_x.to_s + ", " + node.node_y.to_s + ")"
+			# if a node was clicked when no node is @held
+			#puts node
+			if @held.nil? and dist(mouse_x - width/2, mouse_y - height + 20, node.node_x, node.node_y) < @node_size
+				#puts "NodeController#mouse_clicked: @held.nil? and dist<node_size"
+				# @held = clicked object
+				@held = node
+				#puts @held
+				#puts "both if"
+				break
+			# elsif a click happened while a node is @held
+			elsif @held
+				#puts "and else"
+				#puts "NodeController#mouse_clicked: elsif @held, trying to release the node"
+				@released = @held
+				@held = nil
+				break
+			end # conditional 
+		end # each do
+		# return hash of @held, @released
+		#puts "NodeController#mouse_clicked Return Values:"
+		#puts @held, @released
+		#puts "---------"
+		@released = nil if @nodes.index(@released).nil?
+		return { "held" => @held, "released" => @released }
 	end
 	
 	# Mouse moved
 	#
 	def mouse_moved
-		unless @now_moving.nil?
+		unless @held.nil?
 			# move it with the mouse, kind of, i mean it should work
-			@nodes[@now_moving].node_x += (mouse_x - pmouse_x)  # DON'T USE THIS IN FINAL
-			@nodes[@now_moving].node_y += (mouse_y - pmouse_y)  # DON'T USE THIS IN FINAL
+			@held.node_x += (mouse_x - pmouse_x)  # DON'T USE THIS IN FINAL, constrain to length
+			@held.node_y += (mouse_y - pmouse_y)  # DON'T USE THIS IN FINAL, constrain to length
 			# ACTUALLY: atan_of_opening_of_branch_closed_by(@nodes[@now_moving]).to_i.times do puts rotation literal
-	
 		end #unless
 	end #mouse_moved
 	

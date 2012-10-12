@@ -50,8 +50,8 @@ class Tree
 		@word = Word.new(word)
 		@word_controller = WordController.new(@word)
 		# - rules
-		@a = Rule.new( nil, nil, "X", nil, 1, "F[+X]F[-X]X" )
-		@b = Rule.new( nil, nil, "F", nil, 1, "FF" )
+		@a = Rule.new( nil, nil, "F", nil, 1, "F[+F]F[-F]F" )
+		@b = Rule.new( nil, nil, "X", nil, 1, "FF" )
 		@rules = [ @a, @b ]
 		# - history
 		@history = History.new(@word)

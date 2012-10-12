@@ -1,4 +1,6 @@
 class BranchController
+
+	include Processing::Proxy
 	
 	load '../models/branch.rb'
 	
@@ -20,6 +22,17 @@ class BranchController
 	def empty
 		@branches = []
 	end
+
+	# remap the normal position of angles 0 = West = left to 0 = North = up
+	def north(deg)
+		if deg > 0
+			mapped = map(deg, 0, 180, -90, 90)
+		elsif deg < 0 and deg >= -90
+			mapped = map(deg, 0, -90, -90, -180)
+		elsif deg < 0 and deg < -90
+			mapped = map(deg, -90, -180, 180, 90) 
+		end
+	end # north
 	
 	# get the other node in the branch
 	def find_match_of(node)
@@ -29,6 +42,8 @@ class BranchController
 				return branch.end_point
 			elsif branch.end_point == node
 				return branch.start_point
+			else
+				# puts "BranchController#find_match_of(node): could not find the node in any branch"
 			end # conditional
 		end # each do
 	end # find match of
@@ -37,9 +52,14 @@ class BranchController
 	def angle(node)
 		@node1 = find_match_of(node)
 		@node2 = node
-		@angle = Math.atan2( @node2.node_y - @node1.node_y, @node2.node_x - @node1.node_x )
-		puts "BranchController#angle: " + @angle.to_s
-		return @angle
+		#puts "BranchController#angle: @node1 = " + @node1.to_s
+		#puts "BranchController#angle: @node2 = " + @node2.to_s
+		unless @node1.class == Array
+			angle = Math.atan2( @node2.node_y - @node1.node_y, @node2.node_x - @node1.node_x )
+			remapped = north(degrees(angle))
+			#puts "BranchController#angle (remapped): " + remapped.to_s
+			return remapped
+		end
 	end
 	
 end

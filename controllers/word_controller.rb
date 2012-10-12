@@ -37,7 +37,6 @@ class WordController
 		@close_brackets = 0
 	end
 	
-	# VERY INCOMPLETE
 	def rotate_branch(node_substring)
 		# plusses and minuses at the start of an open bracket ONLY
 		@pair = get_branch_at(node_substring)
@@ -139,16 +138,16 @@ class WordController
 		return elements_of(@word)
 	end
 	
-	# for WordController
-	def update_angle( angle, node, match, angle_deg )
-		puts "WordController#update_angle: angle: #{angle}, node: #{node}, match: #{match}, angle_deg: #{angle_deg} "
+	# Updates the substring represented by the node just manipulated
+	# to reflect the new angle
+	def update_angle( angle, node, match, angle_deg, current_word ) # TODO add param 'word', passed in from tree.hist_control.current_word
+																										# word is presently nil class and is causing major errors
 		# set new_rotation_char (+,-) based on sign
-		@literal = "-"
-		@adjustment = 90
-		 
+		@literal = "+"
+		
 		@pos1 = node.str_pos
 		@pos2 = match.str_pos
-		
+		# switch positions to make sure that pos1 < pos2 always, so there's a valid range later
 		if @pos2 < @pos1
 			@pos3 = @pos1
 			@pos1 = @pos2
@@ -162,40 +161,46 @@ class WordController
 		#now that @pos1 is definitely the smallest, step forward from there until you hit the first bracket
 		@next_bracket = ""
 		@pos = @pos1
+		#puts "WordController#update_angle: before while"
 		while @next_bracket == "" do
+			#puts "WordController#update_angle: while"
 		  @pos += 1
-		  if @word.word[@pos..@pos] == "[" or @word.word[@pos..@pos] == "]"
+		  if current_word.word[@pos..@pos] == "[" or current_word.word[@pos..@pos] == "]"
 				@next_bracket = @pos
 		  end
+		  @next_bracket = current_word.word.length-1 if @pos >= current_word.word.length
+		  break if @pos > current_word.word.length
 		end
-		
+		#puts "WordController#update_angle: after while"
 		
 		if angle > 0
-			@literal = "+"
-			@adjustment = -90
+			@literal = "-"
 		end
-		@times = ((angle+@adjustment)/angle_deg).abs.to_i
+		
+		@times = (angle/angle_deg).abs.to_i # determines angle based on angle_deg increment
 		puts "times " + @times.to_s
 		@rotation_literal_set = ""
 		@times.times do
+		#puts "WordController#update_angle: times.times do rotation literal set"
 			@rotation_literal_set << @literal
 		end
 		if @rotation_literal_set == ""
 			@rotation_literal_set << @literal
 		end
 				
-		puts "WordController#update_angle, @rotation_literal_set = #{@rotation_literal_set}"
-		
-		puts "pos1: " + @pos1.to_s + ", pos2: " + @pos2.to_s
+		#puts "WordController#update_angle: @rotation_literal_set = #{@rotation_literal_set}"
+		#puts "WordController#update_angle: @next_bracket = #{@next_bracket}"
+		#puts "WordController#update_angle: pos1: " + @pos1.to_s + ", pos2: " + @pos2.to_s
 		
 		
 		# replace any +/- with 
 		# regex starting at str_pos for a line of rotation literals +,-, more later
 			# replace with angle/system_angle.times do @rotation_string << new_rot_char
-
-		@word.word[ @pos1..@next_bracket ] = @word.word[ @pos1..@next_bracket ].gsub( /(\++|-+)/, @rotation_literal_set )
-		puts "WORD: " + @word.word.to_s
 		
+		#puts "WordController#update_angle: word[range]: " + current_word.word[ @pos1..@next_bracket ].to_s
+		current_word.word[ @pos1..@next_bracket ] = current_word.word[ @pos1..@next_bracket ].gsub( /(\++|-+)/, @rotation_literal_set )
+		puts "WordController#update_angle CURRENT WORD: " + current_word.word.to_s
+		return current_word
 	end 	#update angle
 	
 	

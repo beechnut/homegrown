@@ -102,7 +102,8 @@ class HistoryController
 	# print out all gens & mods
 	def print_history
 		@generations.each_with_index do | gen, n |
-			puts "gen: " + n.to_s + " - " + gen.word.to_s + " | mod: " + @modifications[n].to_s
+			mod_print = @modifications[n].to_s
+			puts "gen: " + n.to_s + " - " + gen.word.to_s + " | mod: " + mod_print
 		end
 	end
 	
@@ -122,7 +123,7 @@ class HistoryController
 	
 	#### AGE ADVANCEMENT
 	def advance_generation(rules)
-	  puts "HistoryController#advance_generation"
+	  #puts "HistoryController#advance_generation"
 	  # if this is the last generation
 	  if @n == @generations.length-1
 	  	# take the word and generate it into the next generation
@@ -133,24 +134,24 @@ class HistoryController
 	  # we move forward in the array
 	  @n +=1
 	  $generation = @n
-		puts "index " + @n.to_s + " of a max " + (@generations.length-1).to_s + " (length " + (@generations.length).to_s + ")"
+		#puts "index " + @n.to_s + " of a max " + (@generations.length-1).to_s + " (length " + (@generations.length).to_s + ")"
 		print_history
 		return returnable
 	end
 	
 	def regress_generation
-		puts "HistoryController#regress_generation"
+		#puts "HistoryController#regress_generation"
 		# if this is the first generation
 		if @n == 0
 			# puts that it's the first generation
-			puts "HistoryController#regress_generation says: We're at the first generation. Can't go back."
+			#puts "HistoryController#regress_generation says: We're at the first generation. Can't go back."
 			return returnable # returns @n=0
 		# else if this is not the first generation
 		else
 			# move back a generation (n-=1)
 			@n -= 1
 			$generation = @n
-			puts "index " + @n.to_s + " of a max " + (@generations.length-1).to_s + " (length " + (@generations.length).to_s + ")"
+			# puts "index " + @n.to_s + " of a max " + (@generations.length-1).to_s + " (length " + (@generations.length).to_s + ")"
 			print_history
 			return returnable
 		end # conditional regression

@@ -1,7 +1,4 @@
-NAMES
-Arbortect
 Homegrown
-
 
 
 PURPOSE
@@ -11,7 +8,7 @@ To advance organic architecture, rapidly iterate models, and support grant propo
 Enable the easier development of true-to-life L-Systems through accurate visualization.
 
 GOAL
-Description of an Oct 14 finished state, 0.0.1 :
+Description of an Oct 14 0.1 (hiver) :
 	# Take in an axiom and rules to generate a word.
 	# System has manipulable branches with manipulations reflected in later generations.
 	# Generations are traversable (you can see the growth over time) via buttons.
@@ -20,37 +17,41 @@ Description of an Oct 14 finished state, 0.0.1 :
 	# Mildly photorealistic in terms of color.
 	# Styles all push and pop.
 	# Camera can pan and zoom.
-  BUG Manipulable, but only in 2D.
+	# Adaptive cylinder drawing becomes less fine as generations increase.
+    # Textured branches.
+ 	# Manipulable in 2D.
  TODO Thorough documentation.
-	
-	BUG WORK:
-		On one mouse click, it assumes a release.
-		Need to toggle release, not just count mouse_clicks % 2.
 
-Description of a Nov 14 0.0.2 :
+Description of a Nov 14 0.2 (primavera) :
 	Code refactored to more accurate MVC architecture.
 	Manipulable in 3D.
-	Textured.
 	Standardized color mode.
-	Camera can rotate.
-	Handles rotation literals not appearing right before a bracket.
-	Adaptive cylinder drawing becomes less fine as generations or nodes increase.
+	Camera can rotate. Peasycam.
+	Accurate texture application. Requires understanding of cylinder construction.
+	Interprets and alters rotation literals not appearing right before a bracket.
 	Grove - multiple trees on the timeline, in the scene.
 	Graftable - trees can be grafted together, and scions can be added along branches.
 	Prunable - trees can be cut manually, or incorporate
 	Bezier curves for branches
 	Massive upgrade to character set, to incorporate 3D rotation, flowering, leafing, cutting, signal processing
+	GUI display unaffected by camera motion.
+	Self-contained packaged application for Mac OS X.
 	Thorough documentation.
-	GUI separate from camera control.
-	Self-contained applet.
 
-
-Description of a Dec 14 0.0.3 :
+Description of a Dec 14 0.3 (verano) :
 	Parametric L-Systems supported.
 	Tree selector.
+	Phototropism.
+	Branch weight calculated in determining auto-cut.
 	Crisp, intuitive GUI.
 	Thorough documentation.
-	Sketchup plugin; Sketchup is rendering engine.
+	Sketchup plugin.
+	Public API.
+	
+Description of a 1.0 (autumn) :
+	Outputs to .obj and .3ds for editing in Maya, Rhino, AutoCAD.
+	Installation of windows, floors, membranes.
+	Structural analysis.
 
 
 LIST OF MVC

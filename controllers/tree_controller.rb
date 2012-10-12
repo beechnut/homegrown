@@ -138,36 +138,38 @@ class TreeController
 	# MOUSE
 
 	# on mouse click => node controller.mouse click, etc.
-	
-	$mouse_clicks = 0
 	def mouse_clicked
+		puts "+"
+		puts "+"
+		puts "+"
 		puts "TreeController#mouse_clicked at (#{mouse_x},#{mouse_y})"
-		@now_moving = @tree.node_controller.mouse_clicked
-		# get the released node
-		@released = if @now_moving.nil?
-						@released # returns nil if we've got a node in focus
-					else
-						@now_moving # returns the index of the node in @nodes if released
-					end
 		
-		# get the angle between the released node and its partner in the branch
-		@released_node = @tree.node_controller.nodes[@released] unless @released.nil?
-		puts "TreeController#mouse_clicked: released: " + @released_node.to_s
-		@angle_to_write = @tree.branch_controller.angle( @released_node ) unless @released_node.nil? #degrees
-		
-		#match to pass to update angle
-		@match = @tree.branch_controller.find_match_of( @released_node )
-		@tree.history_controller.add_modification( @tree.word_controller.update_angle( degrees(@angle_to_write), @released_node, @match, @@angle_deg ) ) unless @released_node.nil?
-		
-		$mouse_clicks += 1
-		puts $mouse_clicks #didn't even get to this
-		if $mouse_clicks % 2 == 0
+		# get held and released nodes
+		@hash = @tree.node_controller.mouse_clicked # TODO => update NodeController#mouse_clicked
+		@held = @hash['held']
+		@released = @hash['released']
+
+		# if held is nil
+		if @held.nil? and @released
+			puts "TreeController#mouse_clicked @held: #{@held}, @released: #{@released}"
+			# calculate angle based on remapped north
+			@angle_to_write = @tree.branch_controller.angle( @released ) #returns as remapped degrees
+			# get matching node to pass to update angle, so it can find the right string positions
+			@match = @tree.branch_controller.find_match_of( @released )
+		  # update word with angle
+		  puts "TreeController#mouse_clicked: RETURNABLE = " + @tree.history_controller.returnable.word.to_s
+		  @tree.history_controller.add_modification( @tree.word_controller.update_angle( @angle_to_write, @released, @match, @@angle_deg, @tree.history_controller.returnable ) )
+		  @tree.word = @tree.history_controller.returnable
+		  # set @released to nil so a click elsewhere doesn't F everything up
+		  @released = nil
+		  puts "TreeController#mouse_clicked: @released should be nil and it is " + @released.to_s
+		  puts "TreeController#mouse_clicked: @held should be nil and it is " + @held.to_s
+		  # disintegrate; interpret
 		  disintegrate
 		  interpret
 		end
-		
 		redraw
-	end
+	end # mouse_clicked
 
 	def mouse_moved
 		#puts "TreeController#mouse_moved"

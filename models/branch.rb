@@ -14,9 +14,8 @@ class Branch
 		# top
 		img = PImage.new
 		img = load_image('../models/stone.jpg')
-		#texture_mode(NORMALIZED)
 		begin_shape
-		texture(img)
+		#texture(img)
 		for i in 0..sides
 			x = cos( radians( i * angle ) ) * r1
 			y = sin( radians( i * angle ) ) * r1
@@ -26,7 +25,7 @@ class Branch
 		
 		# bottom
 		begin_shape
-		texture(img)
+		#texture(img)
 		for i in 0..sides
 			x = cos( radians( i * angle ) ) * r2
 			y = sin( radians( i * angle ) ) * r2
@@ -42,8 +41,8 @@ class Branch
 			y1 = sin( radians( i * angle ) ) * r1
 			x2 = cos( radians( i * angle ) ) * r2
 			y2 = sin( radians( i * angle ) ) * r2
-			vertex( x1, y1, -half_height)
-			vertex( x2, y2, half_height)
+			vertex( x1, y1, -half_height, x1, y1)
+			vertex( x2, y2, half_height, x2, y2)
 		end
 		end_shape(CLOSE)
 	end
@@ -71,7 +70,7 @@ class Branch
 
 			#puts "Branch#cylinder_between: gen = " + gen.to_s
 			@sides = 35
-			@sides = 35 / gen unless gen == 0
+			@sides = 35 / gen unless gen == 0 or gen > 10
 			@r1 = (trunk_width + gen * trunk_increment)/(@order+1)
 			@r2 = (trunk_width + gen * trunk_increment)/(@order)
 			cylinder(@sides, @r1, @r2, dist)

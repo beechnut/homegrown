@@ -127,7 +127,7 @@ class HistoryTreeTest < Processing::App
 		@bc.add(@b1)
 		@bc.add(@b2)
 		
-		@tc = TreeController.new("[X]")
+		@tc = TreeController.new("[F]")
 		@tc.interpret
 		no_loop
 	end
@@ -153,11 +153,11 @@ class HistoryTreeTest < Processing::App
 			translate width/2, height-20
 			@tc.draw
 		popMatrix
-		@bc.hover_assess
 		camera(width/2.0, height/2.0, (height/2.0) / tan(PI*30.0 / 180.0) + @iz, #
 					width/2.0, height/2.0 + @ix, 0, #
 					0, 1, 0) #
-		puts "HistoryTreeTest#draw"
+		@bc.hover_assess
+		#puts "HistoryTreeTest#draw"
 	end
 	
 	def key_pressed

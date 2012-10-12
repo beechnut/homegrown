@@ -1,70 +1,82 @@
 *
-* Grooby aka L-Ruby
-* 
-*  The Ruby-Processing library for generating plant models
+* Homegrown
+*       v0.1 "hiver"
+*
+*  The Ruby-Processing app for generating plant models
 *  driven by Lindenmayer Systems (L-Systems)
 *
 
+----- Installation -----
+
+These instructions are for Mac OS X with Ruby 1.8.7 only.
+
+1. Download the repository 'grooby' to your computer.
+
+2. Install ruby-processing. Run Terminal.app ($ denotes prompt - don't type '$') and enter
+
+		$ sudo gem install ruby-processing
+	
+   and enter your password at the prompt.
+
+3. In Terminal, navigate to the repository. If you downloaded the folder 'grooby' into your Documents folder, to navigate into 'grooby/tests' (where the run file is located), type
+
+		$ cd ~/Documents/grooby/tests
+
+4. Run the program by typing
+
+		$ rp5 run history_tree_test.rb
+		
+5. To advance the tree in age, click the forward button. To reverse age it, click the reverse button. Manipulate branches by clicking a node, moving it to where you want it, and releasing it. Note, angle calculations are still buggy, so you may need to click in the wrong spot to get it to snap to the right spot.
+
+6. To move the camera, well, first, don't expect to be able to manipulate after you've moved the camera. The buttons and nodes kind of don't work afterwards. But, to move:
+
+		W  tilt up			E  truck forward
+		S  tilt down		D  truck backward
+
+7. NOTE: The following will only make sense to you if you've studied Lindenmayer Systems. To edit the rules used in the Lindenmayer System, open models/tree.rb in a text editor. You'll see the following lines:
+
+	53|	@a = Rule.new( nil, nil, "F", nil, 1, "F[+F]F[-F]F" )
+	54|	@b = Rule.new( nil, nil, "X", nil, 1, "FF" )
+	55|	@rules = [ @a, @b ]
+	
+To add a rule, make a new instance variable and follow the syntax. Make sure 'nil' takes arguments 1, 2, and 4. Argument 3 is the predecessor, argument 5 is the probability [0..1], and argument 6 is the successor.
+
+For example, to add the rule F =(0.8)=> FF, the code would look like this:
+
+	53|		@a = Rule.new( nil, nil, "F", nil, 1, "F[+F]F[-F]F" )
+	54|		@b = Rule.new( nil, nil, "X", nil, 1, "FF" )
+	55| 	@c = Rule.new( nil, nil, "F", nil, 0.8, "FF" ) # new rule, assign to @c
+	55|		@rules = [ @a, @b, @c ] #added @c to the array of rules
+
+The axiom is set, for some reason, in history_tree_test.rb. Make sure the axiom is surrounded by square brackets as in the below example. Some of the logic currently depends on it.
+
+	130|	@tc = TreeController.new("[F]")
 
 
-To Generate a Basic L-System Model
+----- Release Plans -----
 
-- Download the repository.
-- Download Shoes if you don't have it. Download the right version for your operating
-  system from shoesrb.com/downloads.
-- Install Shoes and open it. Click "Open an App".
-- Navigate to and open "editor-crisp.rb".
+Nov 14: v0.2 "primavera"
+	+ support for multiple trees, grafting, and secure positioning
+	+ massive upgrade to interpretation library to accommodate
+	  flowers, leaves, and chemical signal processing
+	+ editing and displaying in 3D
+	+ more photorealistic
+	+ easy mouse-based camera control
+	+ available as standalone application
 
-- Input the axiom, number of times to rewrite the string using the rules, line length
-  where line is the line drawn by the letter F, branching angle
-- TIPS:
-	-- To start a branch, use [. To end the branch and go back to drawing from the
-	   stem/trunk, use ].
-	-- To create a straight line anywhere, use F. X makes a smaller straight line of
-	   fixed size.
-	   
-	   
-  The default options draw a nice tree. Use that as jumping-off point for exploration.
+Dec 14: v0.3 "verano"
+	+ phototropism and environmental reactions
+	+ selection of pre-constructed, true-to-life L-Systems
+	+ Sketchup plugin
+	+ Public API
 
-- Click 'Generate Word'. This produces the string of characters to be used in
-  visualization. The footer is useful for inspecting the word. Once you have
-  generated the word...
-  
-- Click 'Run Model'
-    This visualizes the word you just generated.
-	This runs 'imager.rb' as a Processing sketch using the Ruby-Processing library developed by j-ashkenas.
-
-- Your sketch will load as an image.
-- To re-run the sketch, make sure to quit out of the Ruby-Processing applet that opens using Apple-Q. The Terminal hangs while Ruby-Processing is running, meaning you can't do anything in that Terminal session/window while the sketch is open.
+Undetermined: v1.0 "autumn"
+	+ installation of organic architecture features like doors, windows, and membranes
+	+ outputs .obj and .3ds
 
 
-##### TECHNICAL DETAILS #####
 
-
-Classes
-
-Things needed:
-
-Superclass of all types of L-Systems
-	Individual types of L-Systems
-
-Species implementing L-Systems
-Species implementing models
-
-Productions
-	Signal descriptions
-		Signal description builder
-
-Graphics and UI
- Plant a seed
- Advance a step
- Reverse a step
- Use a seed so steps back and forward are consistent
- / Move a branch, bind branches --> these operations would occur on the model word
- / Then translates the model word to models
-
-
-##### MILESTONES in 2012 #####
+----- Goals and Milestones -----
 
 Generate a production word from an axiom and a set of productions, n steps.
 	REACHED: 18 July 2012 2:28 am
